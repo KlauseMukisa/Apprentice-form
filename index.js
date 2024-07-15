@@ -119,3 +119,24 @@ document.addEventListener('DOMContentLoaded', () => {
         return phonePattern.test(phone);
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+
+    function togglePassword(inputId) {
+        const passwordInput = document.getElementById(inputId);
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            passwordInput.nextElementSibling.textContent = "Hide";
+        } else {
+            passwordInput.type = "password";
+            passwordInput.nextElementSibling.textContent = "Show";
+        }
+    }
+
+    // Assign the togglePassword function to the global scope so it can be called from inline HTML
+    window.togglePassword = togglePassword;
+});

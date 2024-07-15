@@ -1,21 +1,21 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 /* styles.css */
 body {
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-style: normal;
     margin: 0;
     padding: 0;
     background-color: white;
     color: #333;
 }
+
 header {
     background-color: white;
     color: black;
     padding: 10px 0;
-    border-bottom: 1p;
+    border-bottom: 1px solid orange;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -97,11 +97,14 @@ main h1 {
     gap: 15px;
 }
 
-.modal form input {
+.modal form input,
+.modal form select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .modal form button {
@@ -147,6 +150,27 @@ main h1 {
     background-color: darkgreen;
 }
 
+.password-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper .toggle-password {
+    margin-left: 10px;
+    padding: 5px;
+    background-color: orange;
+    border: none;
+    cursor: pointer;
+}
+
+.phone-wrapper {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
 footer {
     background-color: white;
     color: black;
@@ -170,4 +194,50 @@ footer .footer-links a {
 
 footer .footer-links a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+    header .container {
+        flex-direction: column;
+    }
+
+    .modal form input,
+    .modal form select,
+    .modal form button {
+        font-size: 14px;
+    }
+
+    .actions .apply-button,
+    .actions .register-button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal {
+        width: 90%;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal {
+        padding: 15px;
+    }
+
+    .modal form input,
+    .modal form select,
+    .modal form button {
+        font-size: 12px;
+    }
+
+    .actions .apply-button,
+    .actions .register-button {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
 }

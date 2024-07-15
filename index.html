@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GROW Project Apprentice Application</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
 </head>
 <body>
     <header>
@@ -33,13 +34,14 @@
                     <input type="email" id="loginEmail" name="email" placeholder="Enter your email or phone number" required>
                     
                     <label for="loginPassword">Password:</label>
-                    <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('loginPassword')">Show</button>
+                    </div>
                     
                     <button type="submit">Login</button>
                     <a href="#" class="forgot-password">Forgot Password?</a>
                 </form>
-
-                
             </div>
             
             <div class="actions">
@@ -64,7 +66,10 @@
                     <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
                     
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" placeholder="Create a password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('password')">Show</button>
+                    </div>
                     
                     <button type="submit">Register</button>
                     <a href="index.html" id="backToLogin">Back to Login</a>
@@ -84,6 +89,7 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
