@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review and Submit</title>
+    <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="header-logo">
+                <a href="basicInfo.html">
+                    <img src="grow_logo.jpg" alt="Company Logo">
+                </a>
+            </div>
+            <div class="header-title">
+                <h1>Apprentice Application Form</h1>
+            </div>
+            <div class="header-logout">
+                <a href="index.html" class="btn btn-primary">Log Out</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Review and Submit</h2>
+            
+            <!-- Basic Information Section -->
+            <div class="review-section">
+                <h3>Basic Information</h3>
+                <p><strong>Full Name:</strong> <span id="reviewFullName"></span></p>
+                <p><strong>Date of Birth:</strong> <span id="reviewDob"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='basicInfo.html'">Edit</button></p>
+            </div>
+
+            <!-- Category of Apprentice Section -->
+            <div class="review-section">
+                <h3>Category of Apprentice</h3>
+                <p><strong>Category:</strong> <span id="reviewCategory"></span></p>
+                <p><strong>Highest Level of Education:</strong> <span id="reviewEducation"></span></p>
+                <p><strong>Ethnic Group:</strong> <span id="reviewEthnicGroup"></span></p>
+                <p><strong>Disability:</strong> <span id="reviewDisability"></span></p>
+                <p><strong>Disability Type:</strong> <span id="reviewDisabilityType"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='category.html'">Edit</button></p>
+            </div>
+
+            <!-- Nationality and Residence Section -->
+            <div class="review-section">
+                <h3>Nationality and Residence</h3>
+                <p><strong>Nationality:</strong> <span id="reviewNationality"></span></p>
+                <p><strong>NIN:</strong> <span id="reviewNin"></span></p>
+                <p><strong>Country:</strong> <span id="reviewCountry"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='physicalAddress.html'">Edit</button></p>
+            </div>
+
+            <!-- Enterprise Basic Details Section -->
+            <div class="review-section">
+                <h3>Enterprise Basic Details</h3>
+                <p><strong>Enterprise Name:</strong> <span id="reviewEnterpriseName"></span></p>
+                <p><strong>Type of Business Ownership:</strong> <span id="reviewBusinessOwnership"></span></p>
+                <p><strong>Year of Establishment:</strong> <span id="reviewYearOfEstablishment"></span></p>
+                <p><strong>Business Contact Number 1:</strong> <span id="reviewContactNumber1"></span></p>
+                <p><strong>Business Contact Number 2:</strong> <span id="reviewContactNumber2"></span></p>
+                <p><strong>Email:</strong> <span id="reviewEmail"></span></p>
+                <p><strong>P.O. Box Number:</strong> <span id="reviewPoBox"></span></p>
+                <p><strong>District:</strong> <span id="reviewDistrict"></span></p>
+                <p><strong>Sub-county:</strong> <span id="reviewSubCounty"></span></p>
+                <p><strong>County:</strong> <span id="reviewCounty"></span></p>
+                <p><strong>Parish:</strong> <span id="reviewParish"></span></p>
+                <p><strong>Village (LC1):</strong> <span id="reviewVillage"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='enterpriseDetails.html'">Edit</button></p>
+            </div>
+
+            <!-- Enterprise Operation Details Section -->
+            <div class="review-section">
+                <h3>Enterprise Operation Details</h3>
+                <p><strong>Current Sector of Business Operation:</strong> <span id="reviewBusinessSector"></span></p>
+                <p><strong>Business Description:</strong> <span id="reviewBusinessDescription"></span></p>
+                <p><strong>Total Number of Employees:</strong> <span id="reviewEmployees"></span></p>
+                <p><strong>Monthly Revenues/Profit:</strong> <span id="reviewRevenues"></span></p>
+                <p><strong>Acquired Loan:</strong> <span id="reviewAcquiredLoan"></span></p>
+                <p><strong>Loan Amount:</strong> <span id="reviewLoanAmount"></span></p>
+                <p><strong>Outstanding Loan:</strong> <span id="reviewOutstandingLoan"></span></p>
+                <p><strong>Loan Acquisition Date:</strong> <span id="reviewLoanDate"></span></p>
+                <p><strong>Business Registered:</strong> <span id="reviewRegistered"></span></p>
+                <p><strong>URSB/TIN Number:</strong> <span id="reviewUrsbTin"></span></p>
+                <p><strong>Trading License:</strong> <span id="reviewTradingLicense"></span></p>
+                <p><strong>Registration Certificate:</strong> <span id="reviewRegistrationCertificate"></span></p>
+                <p><strong>Reason for Not Registering:</strong> <span id="reviewNotRegisteredReason"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='enterpriseOperation.html'">Edit</button></p>
+            </div>
+
+            <!-- Apprenticeship/Skills Training Section -->
+            <div class="review-section">
+                <h3>Apprenticeship/Skills Training</h3>
+                <p><strong>Benefited from Apprenticeship/Skills Training:</strong> <span id="reviewBenefited"></span></p>
+                <p><strong>Type of Skills Undertaken:</strong> <span id="reviewSkillsType"></span></p>
+                <p><strong>Duration of Training:</strong> <span id="reviewTrainingDuration"></span></p>
+                <p><strong>Desired Sector of Business Training:</strong> <span id="reviewDesiredSector"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='skillsTraining.html'">Edit</button></p>
+            </div>
+
+            <!-- Declaration Section -->
+            <div class="declaration-section">
+                <h3>Declaration</h3>
+                <p>I hereby declare that the information provided above is true and correct to the best of my knowledge and belief.</p>
+                <p><strong>Date:</strong> <span id="reviewDate"></span></p>
+                <div class="mb-3">
+                    <input type="checkbox" id="declarationCheckbox" required>
+                    <label for="declarationCheckbox">I agree to the terms and conditions</label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary" id="submitFormButton">Submit all and finish</button>
+        </div>
+    </div>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <!-- Your script to handle form interactions -->
+    <script>
+        // Example script to populate review fields with data from local storage (or other source)
+        $(document).ready(function() {
+            $('#reviewFullName').text(localStorage.getItem('fullName'));
+            $('#reviewDob').text(localStorage.getItem('dob'));
+            $('#reviewCategory').text(localStorage.getItem('category'));
+            $('#reviewEducation').text(localStorage.getItem('education'));
+            $('#reviewEthnicGroup').text(localStorage.getItem('ethnicGroup'));
+            $('#reviewDisability').text(localStorage.getItem('disability'));
+            $('#reviewDisabilityType').text(localStorage.getItem('disabilityType'));
+            $('#reviewNationality').text(localStorage.getItem('nationality'));
+            $('#reviewNin').text(localStorage.getItem('nin'));
+            $('#reviewCountry').text(localStorage.getItem('country'));
+            $('#reviewEnterpriseName').text(localStorage.getItem('enterpriseName'));
+            $('#reviewBusinessOwnership').text(localStorage.getItem('businessOwnership'));
+            $('#reviewYearOfEstablishment').text(localStorage.getItem('yearOfEstablishment'));
+            $('#reviewContactNumber1').text(localStorage.getItem('contactNumber1'));
+            $('#reviewContactNumber2').text(localStorage.getItem('contactNumber2'));
+            $('#reviewEmail').text(localStorage.getItem('email'));
+            $('#reviewPoBox').text(localStorage.getItem('poBox'));
+            $('#reviewDistrict').text(localStorage.getItem('district'));
+            $('#reviewSubCounty').text(localStorage.getItem('subCounty'));
+            $('#reviewCounty').text(localStorage.getItem('county'));
+            $('#reviewParish').text(localStorage.getItem('parish'));
+            $('#reviewVillage').text(localStorage.getItem('village'));
+            $('#reviewBusinessSector').text(localStorage.getItem('businessSector'));
+            $('#reviewBusinessDescription').text(localStorage.getItem('businessDescription'));
+            $('#reviewEmployees').text(localStorage.getItem('employees'));
+            $('#reviewRevenues').text(localStorage.getItem('revenues'));
+            $('#reviewAcquiredLoan').text(localStorage.getItem('acquiredLoan'));
+            $('#reviewLoanAmount').text(localStorage.getItem('loanAmount'));
+            $('#reviewOutstandingLoan').text(localStorage.getItem('outstandingLoan'));
+            $('#reviewLoanDate').text(localStorage.getItem('loanDate'));
+            $('#reviewRegistered').text(localStorage.getItem('registered'));
+            $('#reviewUrsbTin').text(localStorage.getItem('ursbTin'));
+            $('#reviewTradingLicense').text(localStorage.getItem('tradingLicense'));
+            $('#reviewRegistrationCertificate').text(localStorage.getItem('registrationCertificate'));
+            $('#reviewNotRegisteredReason').text(localStorage.getItem('notRegisteredReason'));
+            $('#reviewBenefited').text(localStorage.getItem('benefited'));
+            $('#reviewSkillsType').text(localStorage.getItem('skillsType'));
+            $('#reviewTrainingDuration').text(localStorage.getItem('trainingDuration'));
+            $('#reviewDesiredSector').text(localStorage.getItem('desiredSector'));
+            $('#reviewDate').text(new Date().toLocaleDateString());
+        });
+
+        // Handle form submission
+        $('#submitFormButton').on('click', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            if ($('#declarationCheckbox').is(':checked')) {
+                alert('Form submitted successfully!');
+                // Add form submission logic here
+            } else {
+                alert('You must agree to the terms and conditions before submitting.');
+            }
+        });
+    </script>
+</body>
+</html>

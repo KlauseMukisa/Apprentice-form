@@ -1,0 +1,173 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* styles.css */
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: #333;
+}
+header {
+    background-color: white;
+    color: black;
+    padding: 10px 0;
+    border-bottom: 1p;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav {
+    margin-left: auto;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+} 
+
+header nav ul li {
+    display: flex;
+}
+
+header nav ul li a {
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+    align-items: first baseline;
+}
+
+header nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    flex: 1; /* Takes up remaining space */
+    text-align: center; /* Centers the text */
+}
+
+main .container {
+    padding: 20px;
+    text-align: center;
+}
+
+main .logo img {
+    width: 150px;
+    margin: 0 auto;
+}
+
+main h1 {
+    color: black;
+    margin: 20px 0;
+}
+
+.modal {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal h2 {
+    color: black;
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.modal form button {
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal form button:hover {
+    background-color: darkorange;
+}
+
+.modal form a {
+    color: green;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.actions {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.actions .apply-button,
+.actions .register-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actions .apply-button:hover,
+.actions .register-button:hover {
+    background-color: darkgreen;
+}
+
+footer {
+    background-color: white;
+    color: black;
+    padding: 10px 0;
+    text-align: center;
+    border-top: 1px solid orange;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+footer .footer-links a {
+    color: black;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+footer .footer-links a:hover {
+    text-decoration: underline;
+}

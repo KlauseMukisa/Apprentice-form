@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category of Apprentice</title>
+    <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="header-logo">
+                <a href="basicInfo.html">
+                    <img src="grow_logo.jpg" alt="Company Logo">
+                </a>
+            </div>
+            <div class="header-title">
+                <h1>Apprentice Application Form</h1>
+            </div>
+            <div class="header-logout">
+                <a href="index.html" class="btn btn-primary">Log Out</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Category Of Apprentice</h2>
+            <form id="apprenticeForm">
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category of Applicant</label>
+                    <select class="form-control" id="category" name="category" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Business Owner">Business Owner</option>
+                        <option value="Employee">Employee</option>
+                        <option value="Partner">Partner</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="education" class="form-label">Highest Level of Education</label>
+                    <select class="form-control" id="education" name="education" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Primary">Primary</option>
+                        <option value="Secondary">Secondary</option>
+                        <option value="Bachelor">Bachelor’s</option>
+                        <option value="Master">Master’s</option>
+                        <option value="Doctorate">Doctorate</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="ethnicGroup" class="form-label">Ethnic Group</label>
+                    <select class="form-control" id="ethnicGroup" name="ethnicGroup" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Iki">Iki</option>
+                        <option value="Tepeth">Tepeth</option>
+                        <option value="Batwa">Batwa</option>
+                        <option value="Benet">Benet</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Do you have any disability?</label>
+                    <div>
+                        <input type="radio" id="disabilityYes" name="disability" value="yes">
+                        <label for="disabilityYes">Yes</label>
+                        <input type="radio" id="disabilityNo" name="disability" value="no">
+                        <label for="disabilityNo">No</label>
+                    </div>
+                </div>
+                <div class="mb-3" id="disabilityTypeContainer" style="display: none;">
+                    <label for="disabilityType" class="form-label">Disability Type</label>
+                    <select class="form-control" id="disabilityType" name="disabilityType">
+                        <option value="" disabled selected>Select</option>
+                        <option value="physical">Physical disability</option>
+                        <option value="hearing">Hearing disability</option>
+                        <option value="visual">Visual disability</option>
+                        <option value="mental">Mental disability</option>
+                        <option value="albinism">Albinism</option>
+                        <option value="littlePeople">Little people</option>
+                        <option value="others">Others (Specify)</option>
+                    </select>
+                </div>
+               
+                <button type="submit" class="btn btn-primary">Next</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Your script to handle form interactions -->
+    <script>
+     
+
+        // Show or hide the disability type field based on the radio button selection
+        $('input[name="disability"]').on('change', function() {
+            if ($('#disabilityYes').is(':checked')) {
+                $('#disabilityTypeContainer').show();
+            } else {
+                $('#disabilityTypeContainer').hide();
+            }
+        });
+
+        // Handle form submission
+        $('#apprenticeForm').on('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Show a notification (replace with actual form processing logic)
+            alert('Form submitted successfully!');
+
+            // Proceed to the next page (update to the actual next page URL)
+            window.location.href = 'physicalAddress.html';
+        });
+    </script>
+</body>
+</html>

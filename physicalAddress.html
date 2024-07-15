@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nationality and Residence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="index.html">
+                    <img src="grow_logo.jpg" alt="Company Logo">
+                </a>
+            </div>
+            <div class="header-title">
+                <h1>Apprentice Application Form</h1>
+            </div>
+            <div class="header-logout">
+                <a href="index.html" class="btn">Log Out</a>
+            </div>
+        </div>
+    </header>
+    <div class="container form-container">
+        <h2>Nationality and Residence</h2>
+        <form id="nationalityForm">
+            <div class="mb-3">
+                <label class="form-label">Are you a Ugandan or a Refugee?</label><br>
+                <input type="radio" id="ugandan" name="nationality" value="Ugandan"> Ugandan<br>
+                <input type="radio" id="refugee" name="nationality" value="Refugee"> Refugee
+            </div>
+            <div id="ninContainer" class="mb-3" style="display: none;">
+                <label for="nin" class="form-label">NIN</label>
+                <input type="text" class="form-control" id="nin" name="nin">
+            </div>
+            <div id="refugeeContainer" class="mb-3" style="display: none;">
+                <label for="refugeeId" class="form-label">Refugee ID</label>
+                <input type="text" class="form-control" id="refugeeId" name="refugeeId">
+            </div>
+            <div id="settlementContainer" class="mb-3" style="display: none;">
+                <label for="settlement" class="form-label">Refugee Settlement</label>
+                <input type="text" class="form-control" id="settlement" name="settlement">
+            </div>
+            <div id="countryContainer" class="mb-3" style="display: none;">
+                <label for="country" class="form-label">Country of Origin</label>
+                <select class="form-control" id="country" name="country">
+                    <option value="" disabled selected>Select</option>
+                    <!-- Options will be populated by JS -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="district" class="form-label">District Of Residence</label>
+                <select class="form-control" id="district" name="district">
+                    <option value="" disabled selected>Select</option>
+                    <!-- Options will be populated by JS -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="region" class="form-label">Region</label>
+                <input type="text" class="form-control" id="region" name="region" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="subCounty" class="form-label">Sub-county</label>
+                <input type="text" class="form-control" id="subCounty" name="subCounty">
+            </div>
+            <div class="mb-3">
+                <label for="county" class="form-label">County</label>
+                <input type="text" class="form-control" id="county" name="county">
+            </div>
+            <div class="mb-3">
+                <label for="parish" class="form-label">Parish</label>
+                <input type="text" class="form-control" id="parish" name="parish">
+            </div>
+            <div class="mb-3">
+                <label for="village" class="form-label">Village (LC1)</label>
+                <input type="text" class="form-control" id="village" name="village">
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Next</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="districts.js"></script>
+    <script src="physicalAddress.js"></script>
+</body>
+</html>

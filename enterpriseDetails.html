@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Basic Details</title>
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="header-logo">
+                <a href="basicInfo.html">
+                    <img src="grow_logo.jpg" alt="Company Logo">
+                </a>
+            </div>
+            <div class="header-title">
+                <h1>Apprentice Application Form</h1>
+            </div>
+            <div class="header-logout">
+                <a href="index.html" class="btn btn-primary">Log Out</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Enterprise Basic Details</h2>
+            <form id="enterpriseForm">
+                <div class="mb-3">
+                    <label for="enterpriseName" class="form-label">Enterprise Name</label>
+                    <input type="text" class="form-control" id="enterpriseName" name="enterpriseName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ownershipType" class="form-label">Type of Business Ownership</label>
+                    <select class="form-control" id="ownershipType" name="ownershipType" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Sole Proprietorship">Sole Proprietorship</option>
+                        <option value="Joint Ownership">Joint Ownership</option>
+                    </select>
+                </div>
+                <div class="mb-3" id="womenOwnershipContainer" style="display: none;">
+                    <label for="womenOwnership" class="form-label">Do women own 51% or more of the shares?</label>
+                    <select class="form-control" id="womenOwnership" name="womenOwnership">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="establishmentYear" class="form-label">Year of Establishment</label>
+                    <input type="date" class="form-control" id="establishmentYear" name="establishmentYear" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contactNumber1" class="form-label">Business Contact Number 1</label>
+                    <input type="tel" class="form-control" id="contactNumber1" name="contactNumber1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contactNumber2" class="form-label">Business Contact Number 2</label>
+                    <input type="tel" class="form-control" id="contactNumber2" name="contactNumber2" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="poBox" class="form-label">P.O. Box Number (Optional)</label>
+                    <input type="text" class="form-control" id="poBox" name="poBox">
+                </div>
+                <div class="mb-3">
+                    <label for="district" class="form-label">District</label>
+                    <select class="form-control" id="district" name="district" required>
+                        <option value="" disabled selected>Select</option>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="subCounty" class="form-label">Sub-county</label>
+                    <input type="text" class="form-control" id="subCounty" name="subCounty" required>
+                </div>
+                <div class="mb-3">
+                    <label for="county" class="form-label">County</label>
+                    <input type="text" class="form-control" id="county" name="county" required>
+                </div>
+                <div class="mb-3">
+                    <label for="parish" class="form-label">Parish</label>
+                    <input type="text" class="form-control" id="parish" name="parish" required>
+                </div>
+                <div class="mb-3">
+                    <label for="village" class="form-label">Village (LC1)</label>
+                    <input type="text" class="form-control" id="village" name="village" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Next</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <!-- Include districts.js for dynamic district loading -->
+    <script src="districts.js"></script>
+    <!-- Your script to handle form interactions -->
+    <script>
+        $(function() {
+            const districtElement = $('#district');
+
+            // Function to populate district dropdown
+            function populateDistrictDropdown() {
+                try {
+                    districts.forEach(district => {
+                        const option = new Option(district.name, district.name);
+                        $(option).data('region', district.region);
+                        districtElement.append(option);
+                    });
+                } catch (error) {
+                    console.error('Error populating district dropdown:', error);
+                }
+            }
+
+            // Show or hide the women ownership field based on the type of ownership selection
+            $('#ownershipType').on('change', function() {
+                if ($(this).val() === 'Joint Ownership') {
+                    $('#womenOwnershipContainer').show();
+                } else {
+                    $('#womenOwnershipContainer').hide();
+                }
+            });
+
+            // Handle form submission
+            $('#enterpriseForm').on('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Validate all fields are filled
+                let isValid = true;
+                $('#enterpriseForm input, #enterpriseForm select').each(function() {
+                    if ($(this).prop('required') && !$(this).val()) {
+                        isValid = false;
+                        alert('Please fill all required fields.');
+                        return false;
+                    }
+                });
+
+                if (isValid) {
+                    // Show a notification (replace with actual form processing logic)
+                    alert('Form submitted successfully!');
+
+                    // Proceed to the next page (update to the actual next page URL)
+                    window.location.href = 'enterpriseOperation.html';
+                }
+            });
+
+            // Initialize Select2 for the district dropdown
+            try {
+                districtElement.select2();
+            } catch (error) {
+                console.error('Error initializing Select2:', error);
+            }
+
+            // Populate the district dropdown
+            populateDistrictDropdown();
+        });
+    </script>
+</body>
+</html>

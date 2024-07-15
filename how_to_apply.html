@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROW Project - How to Apply</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="how_to_apply.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-orange text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <img src="grow_logo.jpg" alt="GROW Project Logo" height="50">
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.html">Home</a>
+                    </li>
+                </ul>
+            </nav>
+            <button class="btn btn-light" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <div class="bg-white p-4 rounded shadow-sm">
+            <section class="intro mb-5">
+                <h1 class="text-success">How to Apply for the GROW Project Apprentice Program</h1>
+                <p>Welcome to the GROW Project Apprentice application guide. Follow these instructions to complete your application process effectively.</p>
+            </section>
+
+            <section class="application-section mb-4" id="personal-info">
+                <h2 class="text-success">Personal Information</h2>
+                <p>Provide your basic personal information in this section.</p>
+                <ul>
+                    <li><strong>Fields:</strong> First Name, Last Name, Email, Phone Number, Date of Birth, Gender.</li>
+                    <li><strong>Additional Info:</strong> Address, Disability Status, Nationality, Refugee Info.</li>
+                    <li><strong>Education Information:</strong> Highest Level of Education, Institutions Attended, Graduation Dates.</li>
+                </ul>
+            </section>
+
+            <section class="application-section mb-4" id="business-details">
+                <h2 class="text-success">Business Details</h2>
+                <p>Provide details about your business operations.</p>
+                <ul>
+                    <li><strong>Fields:</strong> Business Name, Current Sector of Operation, Number of Employees, Monthly Revenue/Profits.</li>
+                    <li><strong>Additional Info:</strong> Business Registration Status, Registration Number (if applicable), Date of Establishment.</li>
+                </ul>
+            </section>
+
+            <section class="application-section mb-4" id="skills-training">
+                <h2 class="text-success">Skills Training</h2>
+                <p>Provide details about your skills and training needs.</p>
+                <ul>
+                    <li><strong>Fields:</strong> Current Skills, Training Programs Attended, Desired Skills/Training.</li>
+                    <li><strong>Additional Info:</strong> Certificates or Proof of Training.</li>
+                </ul>
+            </section>
+
+            <section class="application-section mb-4" id="review-submit">
+                <h2 class="text-success">Review and Submit</h2>
+                <p>Review all your provided information before final submission.</p>
+                <ul>
+                    <li><strong>Fields:</strong> Summary of all provided information.</li>
+                    <li><strong>Additional Info:</strong> Ability to edit sections.</li>
+                    <li><strong>Submission:</strong> Upload required documents, Submit the form.</li>
+                </ul>
+            </section>
+
+            <section class="application-section mb-4" id="upload-documents">
+                <h2 class="text-success">Uploading Documents</h2>
+                <p>Upload the necessary documents as per the guidelines below.</p>
+                <ul>
+                    <li><strong>Required Documents:</strong> Identification, Business Registration Certificates, Proof of Education, Training Certificates.</li>
+                    <li><strong>File Formats:</strong> Acceptable file formats include PDF, JPEG, PNG.</li>
+                    <li><strong>Upload Guidelines:</strong> Max file size is 5MB per file. Use clear, descriptive file names.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-orange text-white text-center py-3">
+        <div class="container">
+            <div class="d-flex justify-content-center mb-2">
+                <a href="#" class="text-white mx-2">Privacy</a>
+                <a href="#" class="text-white mx-2">Terms</a>
+                <a href="#" class="text-white mx-2">Contact</a>
+            </div>
+            <p class="mb-0">&copy; 2024 GROW Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function logout() {
+            // Perform logout functionality, e.g., redirect to logout page
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
