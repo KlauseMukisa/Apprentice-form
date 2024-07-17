@@ -68,17 +68,16 @@ document.addEventListener('DOMContentLoaded', function () {
         regionInput.value = district ? district.region : '';
     });
 
-    // Handle form submission
-    nationalityForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        alertMessage.textContent = 'Form submitted successfully!';
-        alertContainer.style.display = 'block';
-        setTimeout(() => {
-            // Navigate to the next page or perform any other desired action
-            alertContainer.style.display = 'none';
-            page3.style.display = 'none';
-            page4.style.display = 'block';
-           // Change this to the actual next page URL
-        }, 2000);
-    });
+    // Display alert notification
+    alertMessage.textContent = 'Form submitted successfully!';
+    alertContainer.style.display = 'block';
+
+    // Hide the alert after 2 seconds and navigate to the next page
+    setTimeout(function () {
+        alertContainer.style.display = 'none';
+
+        // Navigate to the next page (you can replace this with your actual navigation logic)
+        document.getElementById('page3').style.display = 'none';
+        document.getElementById('page4').style.display = 'block'; // Ensure page3 exists and is the next page
+    }, 2000);
 });
