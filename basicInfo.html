@@ -489,58 +489,52 @@
                 </div>
             </div>
    
-    
-      <div id="page6" class="pages">
-       
-
-        <div class="form-container">
-            <h2>Skills Training</h2>
-            <form id="operationForm">
-                <div class="mb-3">
-                    <label class="form-label">Have you ever benefited from any apprenticeship/skills training programme?</label>
-                    <div>
-                        <input type="radio" id="trainingYes" name="training" value="yes">
-                        <label for="trainingYes">Yes</label>
-                        <input type="radio" id="trainingNo" name="training" value="no">
-                        <label for="trainingNo">No</label>
-                    </div>
+            <div id="page6" class="pages">
+                <div class="form-container">
+                    <h2>Skills Training</h2>
+                    <form id="skillsForm">
+                        <div class="mb-3">
+                            <label class="form-label">Have you ever benefited from any apprenticeship/skills training programme?</label>
+                            <div>
+                                <input type="radio" id="trainingYes" name="training" value="yes">
+                                <label for="trainingYes">Yes</label>
+                                <input type="radio" id="trainingNo" name="training" value="no">
+                                <label for="trainingNo">No</label>
+                            </div>
+                        </div>
+                        <div id="trainingDetailsContainer" style="display: none;">
+                            <div class="mb-3">
+                                <label for="skillsType" class="form-label">Type of Skills Undertaken</label>
+                                <input type="text" class="form-control" id="skillsType" name="skillsType">
+                            </div>
+                            <div class="mb-3">
+                                <label for="trainingDuration" class="form-label">Duration of Training</label>
+                                <input type="text" class="form-control" id="trainingDuration" name="trainingDuration">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="desiredSector" class="form-label">What is your desired sector of Apprenticeship?</label>
+                            <select class="form-control" id="desiredSector" name="desiredSector" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Beauty and cosmetology">Beauty and cosmetology</option>
+                                <option value="Welding and metal fabrication">Welding and metal fabrication</option>
+                                <option value="Electricals and electronics">Electricals and electronics</option>
+                                <option value="Catering and hotel management">Catering and hotel management</option>
+                                <option value="Textiles">Textiles</option>
+                                <option value="Food and agro-processing">Food and agro-processing</option>
+                                <option value="Leisure and hospitality">Leisure and hospitality</option>
+                                <option value="Digital media">Digital media</option>
+                                <option value="Mechanics">Mechanics</option>
+                                <option value="Performing arts">Performing arts</option>
+                                <option value="Construction management">Construction management</option>
+                                <option value="Carpentry">Carpentry</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit and continue</button>
+                    </form>
                 </div>
-                <div id="trainingDetailsContainer" style="display: none;">
-                    <div class="mb-3">
-                        <label for="skillsType" class="form-label">Type of Skills Undertaken</label>
-                        <input type="text" class="form-control" id="skillsType" name="skillsType">
-                    </div>
-                    <div class="mb-3">
-                        <label for="trainingDuration" class="form-label">Duration of Training</label>
-                        <input type="text" class="form-control" id="trainingDuration" name="trainingDuration">
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="desiredSector" class="form-label">What is your desired sector of Apprenticeship?</label>
-                    <select class="form-control" id="desiredSector" name="desiredSector" required>
-                        <option value="" disabled selected>Select</option>
-                        <option value="Beauty and cosmetology">Beauty and cosmetology</option>
-                        <option value="Welding and metal fabrication">Welding and metal fabrication</option>
-                        <option value="Electricals and electronics">Electricals and electronics</option>
-                        <option value="Catering and hotel management">Catering and hotel management</option>
-                        <option value="Textiles">Textiles</option>
-                        <option value="Food and agro-processing">Food and agro-processing</option>
-                        <option value="Leisure and hospitality">Leisure and hospitality</option>
-                        <option value="Digital media">Digital media</option>
-                        <option value="Mechanics">Mechanics</option>
-                        <option value="Performing arts">Performing arts</option>
-                        <option value="Construction management">Construction management</option>
-                        <option value="Carpentry">Carpentry</option>
-                        
-
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit and continue</button>
-            </form>
-        </div>
-
-      </div>
-
+            </div>
+  
       <div id="page7" class="pages">
         
 
@@ -642,6 +636,7 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -660,6 +655,7 @@
   <script src="physicalAddress.js"></script>
   <script src="enterpriseDetails.js"></script>
   <script src="operations.js"></script>
+  <script src="skills.js"></script>
  
     <script>
         function showPage(page) {
