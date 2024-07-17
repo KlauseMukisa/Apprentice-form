@@ -1,23 +1,98 @@
-<!-- header.html -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-logo">
-            <a href="basicInfo.html">
-                <img src="grow_logo.jpg" alt="Company Logo">
-            </a>
-        </div>
-        <nav class="header-nav">
-            <ul class="nav-list">
-               
-                <li class="nav-item dropdown">
-                    <a href="#" class="dropdown-toggle">My Account</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">My Profile</a></li>
-                        <li><a href="#">How to Apply</a></li>
-                        <li><a href="#">Log Out</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uganda Administrative Units</title>
+</head>
+<body>
+    <label for="districts">District:</label>
+    <select id="districts" onchange="loadSubcounties(this.value)">
+        <option value="">Select District</option>
+    </select>
+
+    <label for="subcounties">Subcounty:</label>
+    <select id="subcounties" onchange="loadParishes(this.value)">
+        <option value="">Select Subcounty</option>
+    </select>
+
+    <label for="parishes">Parish:</label>
+    <select id="parishes" onchange="loadVillages(this.value)">
+        <option value="">Select Parish</option>
+    </select>
+
+    <label for="villages">Village (LC1):</label>
+    <select id="villages">
+        <option value="">Select Village</option>
+    </select>
+
+    <script>
+        const apiBaseUrl = 'https://www.exampleapi.com/uganda'; // Replace with the actual API base URL
+
+        // Load districts
+        fetch(`${apiBaseUrl}/districts`)
+            .then(response => response.json())
+            .then(data => {
+                const districtSelect = document.getElementById('districts');
+                data.districts.forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district.id; // or district.name
+                    option.textContent = district.name;
+                    districtSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching districts:', error));
+
+        // Load subcounties based on district
+        function loadSubcounties(districtId) {
+            fetch(`${apiBaseUrl}/subcounties?districtId=${districtId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const subcountySelect = document.getElementById('subcounties');
+                    subcountySelect.innerHTML = '<option value="">Select Subcounty</option>';
+                    data.subcounties.forEach(subcounty => {
+                        const option = document.createElement('option');
+                        option.value = subcounty.id; // or subcounty.name
+                        option.textContent = subcounty.name;
+                        subcountySelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching subcounties:', error));
+        }
+
+        // Load parishes based on subcounty
+        function loadParishes(subcountyId) {
+            fetch(`${apiBaseUrl}/parishes?subcountyId=${subcountyId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const parishSelect = document.getElementById('parishes');
+                    parishSelect.innerHTML = '<option value="">Select Parish</option>';
+                    data.parishes.forEach(parish => {
+                        const option = document.createElement('option');
+                        option.value = parish.id; // or parish.name
+                        option.textContent = parish.name;
+                        parishSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching parishes:', error));
+        }
+
+        // Load villages based on parish
+        function loadVillages(parishId) {
+            fetch(`${apiBaseUrl}/villages?parishId=${parishId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const villageSelect = document.getElementById('villages');
+                    villageSelect.innerHTML = '<option value="">Select Village</option>';
+                    data.villages.forEach(village => {
+                        const option = document.createElement('option');
+                        option.value = village.id; // or village.name
+                        option.textContent = village.name;
+                        villageSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching villages:', error));
+        }
+    </script>
+</body>
+</html>

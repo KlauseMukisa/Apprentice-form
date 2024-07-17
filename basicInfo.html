@@ -5,101 +5,688 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Information</title>
     <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!-- SweetAlert CDN -->
+    <link rel="stylesheet" href="path/to/bootstrap.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-container">
-            <div class="header-logo">
-                
-                    <img src="grow_logo.jpg" alt="Company Logo">
-                </a>
+    <header class="navbar navbar bg-white fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" onclick="toggleSidebar()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex align-items-center">
+                <img src="grow_logo.jpg" alt="GROW Project Logo" height="40" class="me-2">
+                <span class="navbar-brand mb-0 h1">Apprentice Application Form</span>
             </div>
-            <div class="header-title">
-                <h1>Apprentice Application Form</h1>
-            </div>
-            <div class="header-logout">
-                <a href="index.html" class="btn btn-primary">Log Out</a>
+            <div>
+                <a href="index.html" class="btn btn-success">Log Out</a>
             </div>
         </div>
     </header>
+    
+    
 
-    <div class="container">
-        <div class="form-container">
-            <h2>Personal Basic Information</h2>
-            <form id="personalInfoForm">
-                <div class="mb-3">
-                    <label for="surname" class="form-label">Surname</label>
-                    <input type="text" class="form-control" id="surname" name="surname" required>
+    <div class="d-flex wrap">
+        <nav id="sidebar">
+            <ul class="nav flex-column">
+                <li class="nav-item" data-page="page1">
+                    Personal Basic Information
+                </li>
+                <li class="nav-item" data-page="page2">
+                    Category of Apprentice
+                </li>
+                <li class="nav-item" data-page="page3">
+                    Nationality and Residence
+                </li>
+                <li class="nav-item" data-page="page4">
+                    Enterprise Basic Details
+                </li>
+                <li class="nav-item" data-page="page5">
+                    Enterprise Operation Details
+                </li>
+                <li class="nav-item" data-page="page6">
+                    Skills Training
+                </li>
+                <li class="nav-item" data-page="page7">
+                    Review and Submit
+                </li>
+            </ul>
+            <ul>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="index.html">Logout</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container" style="margin-left: 260px;">
+            <div class="form-container mt-4 pages" id="page1">
+                <h2>Personal Basic Information</h2>
+                <form id="personalInfoForm">
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Surname</label>
+                        <input type="text" class="form-control" id="surname" name="surname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="otherNames" class="form-label">Other Names</label>
+                        <input type="text" class="form-control" id="otherNames" name="other_names" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="maritalStatus" class="form-label">Marital Status</label>
+                        <select class="form-control" id="maritalStatus" name="marital_status" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+                            <option value="divorced">Divorced</option>
+                            <option value="widowed">Widowed</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="number" class="form-control" id="age" name="age" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit and continue</button>
+                </form>
+            </div>
+            <div id="alertContainer" style="display: none;">
+                <p id="alertMessage"></p>
+            </div>
+
+            <div id="page2" class="pages">
+                <div class="form-container">
+                    <h2>Category Of Apprentice</h2>
+                    <form id="apprenticeForm">
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Category of Applicant</label>
+                            <select class="form-control" id="category" name="category" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Business Owner">Business Owner</option>
+                                <option value="Employee">Employee</option>
+                                <option value="Partner">Partner</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="education" class="form-label">Highest Level of Education</label>
+                            <select class="form-control" id="education" name="education" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Primary">Primary</option>
+                                <option value="Secondary">Secondary</option>
+                                <option value="Bachelor">Bachelor’s</option>
+                                <option value="Master">Master’s</option>
+                                <option value="Doctorate">Doctorate</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ethnicGroup" class="form-label">Ethnic Group <span class="text-muted">(optional)</span></label>
+                            <select class="form-control" id="ethnicGroup" name="ethnicGroup">
+                                <option value="" disabled selected>Select</option>
+                                <option value="Iki">Iki</option>
+                                <option value="Tepeth">Tepeth</option>
+                                <option value="Batwa">Batwa</option>
+                                <option value="Benet">Benet</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Do you have any disability?</label>
+                            <div>
+                                <input type="radio" id="disabilityYes" name="disability" value="yes">
+                                <label for="disabilityYes">Yes</label>
+                                <input type="radio" id="disabilityNo" name="disability" value="no">
+                                <label for="disabilityNo">No</label>
+                            </div>
+                        </div>
+                        <div class="mb-3" id="disabilityTypeContainer" style="display: none;">
+                            <label for="disabilityType" class="form-label">Disability Type</label>
+                            <select class="form-control" id="disabilityType" name="disabilityType">
+                                <option value="" disabled selected>Select</option>
+                                <option value="physical">Physical disability</option>
+                                <option value="hearing">Hearing disability</option>
+                                <option value="visual">Visual disability</option>
+                                <option value="mental">Mental disability</option>
+                                <option value="albinism">Albinism</option>
+                                <option value="littlePeople">Little people</option>
+                                <option value="others">Others (Specify)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit and continue</button>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="otherNames" class="form-label">Other Names</label>
-                    <input type="text" class="form-control" id="otherNames" name="other_names" required>
+            </div>
+            <div id="alertContainer" style="display: none;">
+                <p id="alertMessage"></p>
+            </div>
+            
+            <div id="page3" class="pages">
+                <div class="container form-container">
+                    <h2>Nationality and Residence</h2>
+                    <form id="nationalityForm">
+                        <div class="mb-3">
+                            <label class="form-label">Are you a Ugandan or a Refugee?</label><br>
+                            <input type="radio" id="ugandan" name="nationality" value="Ugandan"> Ugandan<br>
+                            <input type="radio" id="refugee" name="nationality" value="Refugee"> Refugee
+                        </div>
+                        <div id="ugandanFields" style="display: none;">
+                            <div class="mb-3">
+                                <label for="nin" class="form-label">NIN</label>
+                                <input type="text" class="form-control" id="nin" name="nin">
+                            </div>
+                            <div class="mb-3">
+                                <label for="district" class="form-label">District Of Residence</label>
+                                <select class="form-control" id="district" name="district">
+                                    <option value="" disabled selected>Select</option>
+                                    <!-- Options will be populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="region" class="form-label">Region</label>
+                                <input type="text" class="form-control" id="region" name="region" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subCounty" class="form-label">Sub-county</label>
+                                <input type="text" class="form-control" id="subCounty" name="subCounty">
+                            </div>
+                            <div class="mb-3">
+                                <label for="county" class="form-label">County</label>
+                                <input type="text" class="form-control" id="county" name="county">
+                            </div>
+                            <div class="mb-3">
+                                <label for="parish" class="form-label">Parish</label>
+                                <input type="text" class="form-control" id="parish" name="parish">
+                            </div>
+                            <div class="mb-3">
+                                <label for="village" class="form-label">Village (LC1)</label>
+                                <input type="text" class="form-control" id="village" name="village">
+                            </div>
+                        </div>
+                        <div id="refugeeFields" style="display: none;">
+                            <div class="mb-3">
+                                <label for="refugeeId" class="form-label">Refugee ID</label>
+                                <input type="text" class="form-control" id="refugeeId" name="refugeeId">
+                            </div>
+                            <div class="mb-3">
+                                <label for="country" class="form-label">Country of Origin</label>
+                                <select class="form-control" id="country" name="country">
+                                    <option value="" disabled selected>Select</option>
+                                    <!-- Options will be populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="settlement" class="form-label">Refugee Settlement</label>
+                                <select class="form-control" id="settlement" name="settlement">
+                                    <option value="" disabled selected>Select</option>
+                                    <!-- Options will be populated by JavaScript -->
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit and continue</button>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                <div id="alertContainer" style="display: none;">
+                    <p id="alertMessage"></p>
                 </div>
+            </div>
+
+
+   <div id="page3" class="pages">
+        <div class="container form-container">
+            <h2>Nationality and Residence</h2>
+            <form id="nationalityForm">
                 <div class="mb-3">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                    <label class="form-label">Are you a Ugandan or a Refugee?</label><br>
+                    <input type="radio" id="ugandan" name="nationality" value="Ugandan"> Ugandan<br>
+                    <input type="radio" id="refugee" name="nationality" value="Refugee"> Refugee
                 </div>
-                <div class="mb-3">
-                    <label for="gender" class="form-label">Gender</label>
-                    <select class="form-control" id="gender" name="gender" required>
-                        <option value="" disabled selected>Select</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                      
-                    </select>
+                <div id="ugandanFields" style="display: none;">
+                    <div class="mb-3">
+                        <label for="nin" class="form-label">NIN</label>
+                        <input type="text" class="form-control" id="nin" name="nin">
+                    </div>
+                    <div class="mb-3">
+                        <label for="district" class="form-label">District Of Residence</label>
+                        <select class="form-control" id="district" name="district">
+                            <option value="" disabled selected>Select</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="region" class="form-label">Region</label>
+                        <input type="text" class="form-control" id="region" name="region" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subCounty" class="form-label">Sub-county</label>
+                        <input type="text" class="form-control" id="subCounty" name="subCounty">
+                    </div>
+                    <div class="mb-3">
+                        <label for="county" class="form-label">County</label>
+                        <input type="text" class="form-control" id="county" name="county">
+                    </div>
+                    <div class="mb-3">
+                        <label for="parish" class="form-label">Parish</label>
+                        <input type="text" class="form-control" id="parish" name="parish">
+                    </div>
+                    <div class="mb-3">
+                        <label for="village" class="form-label">Village (LC1)</label>
+                        <input type="text" class="form-control" id="village" name="village">
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="maritalStatus" class="form-label">Marital Status</label>
-                    <select class="form-control" id="maritalStatus" name="marital_status" required>
-                        <option value="" disabled selected>Select</option>
-                        <option value="single">Single</option>
-                        <option value="married">Married</option>
-                        <option value="divorced">Divorced</option>
-                        <option value="widowed">Widowed</option>
-                    </select>
+                <div id="refugeeFields" style="display: none;">
+                    <div class="mb-3">
+                        <label for="refugeeId" class="form-label">Refugee ID</label>
+                        <input type="text" class="form-control" id="refugeeId" name="refugeeId">
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country of Origin</label>
+                        <select class="form-control" id="country" name="country">
+                            <option value="" disabled selected>Select</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="settlement" class="form-label">Refugee Settlement</label>
+                        <select class="form-control" id="settlement" name="settlement">
+                            <option value="" disabled selected>Select</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="age" class="form-label">Age</label>
-                    <input type="number" class="form-control" id="age" name="age" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Next</button>
+                <button type="submit" class="btn btn-primary">Submit and continue</button>
             </form>
         </div>
+        <div id="alertContainer" style="display: none;">
+            <p id="alertMessage"></p>
+        </div>
     </div>
+        
+            
+            <div id="page4" class="pages">
+                <div class="form-container">
+                    <h2>Enterprise Basic Details</h2>
+                    <form id="enterpriseForm">
+                        <div class="mb-3">
+                            <label for="enterpriseName" class="form-label">Enterprise Name</label>
+                            <input type="text" class="form-control" id="enterpriseName" name="enterpriseName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ownershipType" class="form-label">Type of Business Ownership</label>
+                            <select class="form-control" id="ownershipType" name="ownershipType" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                <option value="Joint Ownership">Joint Ownership</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" id="womenOwnershipContainer" style="display: none;">
+                            <label for="womenOwnership" class="form-label">Do women own 51% or more of the shares?</label>
+                            <select class="form-control" id="womenOwnership" name="womenOwnership">
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="establishmentYear" class="form-label">Year of Establishment</label>
+                            <input type="date" class="form-control" id="establishmentYear" name="establishmentYear" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactNumber" class="form-label">Business Contact Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text">+</span>
+                                <input type="tel" class="form-control" id="contactNumber" name="contactNumber" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="poBox" class="form-label">P.O. Box Number (Optional)</label>
+                            <input type="text" class="form-control" id="poBox" name="poBox">
+                        </div>
+                        <div class="mb-3">
+                            <label for="district" class="form-label">District</label>
+                            <input type="text" class="form-control" id="district" name="district" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subCounty" class="form-label">Sub-county</label>
+                            <input type="text" class="form-control" id="subCounty" name="subCounty" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="county" class="form-label">County</label>
+                            <input type="text" class="form-control" id="county" name="county" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="parish" class="form-label">Parish</label>
+                            <input type="text" class="form-control" id="parish" name="parish" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="village" class="form-label">Village (LC1)</label>
+                            <input type="text" class="form-control" id="village" name="village" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit and continue</button>
+                    </form>
+                </div>
+            </div>
+            
+            
+            <div id="page5" class="pages">
+                <div class="form-container">
+                    <h2>Enterprise Operation Details</h2>
+                    <form id="operationForm">
+                        <!-- Business Sector Selection -->
+                        <div class="mb-3">
+                            <label for="businessSector" class="form-label">Current Sector of Business Operation</label>
+                            <select class="form-control" id="businessSector" name="businessSector" required>
+                                <option value="" disabled selected>Select</option>
+                                <!-- Options provided in your previous message -->
+                                <option value="Agriculture">Agriculture</option>
+                                <option value="Manufacturing">Manufacturing</option>
+                                <option value="Services">Services</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                        
+                        <!-- Business Description -->
+                        <div class="mb-3">
+                            <label for="businessDescription" class="form-label">Business Description</label>
+                            <textarea class="form-control" id="businessDescription" name="businessDescription" rows="3" required></textarea>
+                        </div>
+                        
+                        <!-- Total Number of Employees -->
+                        <div class="mb-3">
+                            <label for="employeeCount" class="form-label">Total Number of Employees</label>
+                            <input type="number" class="form-control" id="employeeCount" name="employeeCount" required>
+                        </div>
+                        
+                        <!-- Monthly Revenues/Profit -->
+                        <div class="mb-3">
+                            <label for="revenueProfit" class="form-label">Monthly Revenues/Profit</label>
+                            <input type="text" class="form-control" id="revenueProfit" name="revenueProfit" required>
+                        </div>
+                        
+                        <!-- Loan Acquisition -->
+                        <div class="mb-3">
+                            <label class="form-label">Have you ever acquired a loan from any financial institution?</label>
+                            <div>
+                                <input type="radio" id="loanYes" name="loan" value="yes">
+                                <label for="loanYes">Yes</label>
+                                <input type="radio" id="loanNo" name="loan" value="no" checked>
+                                <label for="loanNo">No</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Loan Details Container (initially hidden) -->
+                        <div id="loanDetailsContainer" style="display: none;">
+                            <div class="mb-3">
+                                <label for="loanAmount" class="form-label">What Amount of Loan Was Acquired?</label>
+                                <input type="text" class="form-control" id="loanAmount" name="loanAmount">
+                            </div>
+                            <div class="mb-3">
+                                <label for="loanBalance" class="form-label">What Amount Are You Still Owing to the Bank</label>
+                                <input type="text" class="form-control" id="loanBalance" name="loanBalance">
+                            </div>
+                            <div class="mb-3">
+                                <label for="loanDate" class="form-label">Date when the loan was acquired?</label>
+                                <input type="date" class="form-control" id="loanDate" name="loanDate">
+                            </div>
+                        </div>
+                        
+                        <!-- Business Registration -->
+                        <div class="mb-3">
+                            <label class="form-label">Is your business registered?</label>
+                            <div>
+                                <input type="radio" id="registeredYes" name="registered" value="yes">
+                                <label for="registeredYes">Yes</label>
+                                <input type="radio" id="registeredNo" name="registered" value="no" checked>
+                                <label for="registeredNo">No</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Registration Details Container (initially hidden) -->
+                        <div id="registrationDetailsContainer" style="display: none;">
+                            <div class="mb-3">
+                                <label for="ursbNumber" class="form-label">URSB Number or TIN Number</label>
+                                <input type="text" class="form-control" id="ursbNumber" name="ursbNumber">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tradingLicense" class="form-label">Attach Trading License</label>
+                                <input type="file" class="form-control" id="tradingLicense" name="tradingLicense">
+                            </div>
+                            <div class="mb-3">
+                                <label for="businessCertificate" class="form-label">Attach Business Registration Certificate</label>
+                                <input type="file" class="form-control" id="businessCertificate" name="businessCertificate">
+                            </div>
+                            <div class="mb-3">
+                                <label for="notRegisteredReason" class="form-label">Reason for not being registered</label>
+                                <textarea class="form-control" id="notRegisteredReason" name="notRegisteredReason" rows="3"></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary">Submit and Continue</button>
+                    </form>
+                </div>
+            </div>
+   
+    
+      <div id="page6" class="pages">
+       
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <div class="form-container">
+            <h2>Skills Training</h2>
+            <form id="operationForm">
+                <div class="mb-3">
+                    <label class="form-label">Have you ever benefited from any apprenticeship/skills training programme?</label>
+                    <div>
+                        <input type="radio" id="trainingYes" name="training" value="yes">
+                        <label for="trainingYes">Yes</label>
+                        <input type="radio" id="trainingNo" name="training" value="no">
+                        <label for="trainingNo">No</label>
+                    </div>
+                </div>
+                <div id="trainingDetailsContainer" style="display: none;">
+                    <div class="mb-3">
+                        <label for="skillsType" class="form-label">Type of Skills Undertaken</label>
+                        <input type="text" class="form-control" id="skillsType" name="skillsType">
+                    </div>
+                    <div class="mb-3">
+                        <label for="trainingDuration" class="form-label">Duration of Training</label>
+                        <input type="text" class="form-control" id="trainingDuration" name="trainingDuration">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="desiredSector" class="form-label">What is your desired sector of Apprenticeship?</label>
+                    <select class="form-control" id="desiredSector" name="desiredSector" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Beauty and cosmetology">Beauty and cosmetology</option>
+                        <option value="Welding and metal fabrication">Welding and metal fabrication</option>
+                        <option value="Electricals and electronics">Electricals and electronics</option>
+                        <option value="Catering and hotel management">Catering and hotel management</option>
+                        <option value="Textiles">Textiles</option>
+                        <option value="Food and agro-processing">Food and agro-processing</option>
+                        <option value="Leisure and hospitality">Leisure and hospitality</option>
+                        <option value="Digital media">Digital media</option>
+                        <option value="Mechanics">Mechanics</option>
+                        <option value="Performing arts">Performing arts</option>
+                        <option value="Construction management">Construction management</option>
+                        <option value="Carpentry">Carpentry</option>
+                        
+
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit and continue</button>
+            </form>
+        </div>
+
+      </div>
+
+      <div id="page7" class="pages">
+        
+
+        <div class="form-container">
+            <h2>Review and Submit</h2>
+            
+            <!-- Basic Information Section -->
+            <div class="review-section">
+                <h3>Basic Information</h3>
+                <p><strong>Full Name:</strong> <span id="reviewFullName"></span></p>
+                <p><strong>Date of Birth:</strong> <span id="reviewDob"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='basicInfo.html'">Edit</button></p>
+            </div>
+
+            <!-- Category of Apprentice Section -->
+            <div class="review-section">
+                <h3>Category of Apprentice</h3>
+                <p><strong>Category:</strong> <span id="reviewCategory"></span></p>
+                <p><strong>Highest Level of Education:</strong> <span id="reviewEducation"></span></p>
+                <p><strong>Ethnic Group:</strong> <span id="reviewEthnicGroup"></span></p>
+                <p><strong>Disability:</strong> <span id="reviewDisability"></span></p>
+                <p><strong>Disability Type:</strong> <span id="reviewDisabilityType"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='category.html'">Edit</button></p>
+            </div>
+
+            <!-- Nationality and Residence Section -->
+            <div class="review-section">
+                <h3>Nationality and Residence</h3>
+                <p><strong>Nationality:</strong> <span id="reviewNationality"></span></p>
+                <p><strong>NIN:</strong> <span id="reviewNin"></span></p>
+                <p><strong>Country:</strong> <span id="reviewCountry"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='physicalAddress.html'">Edit</button></p>
+            </div>
+
+            <!-- Enterprise Basic Details Section -->
+            <div class="review-section">
+                <h3>Enterprise Basic Details</h3>
+                <p><strong>Enterprise Name:</strong> <span id="reviewEnterpriseName"></span></p>
+                <p><strong>Type of Business Ownership:</strong> <span id="reviewBusinessOwnership"></span></p>
+                <p><strong>Year of Establishment:</strong> <span id="reviewYearOfEstablishment"></span></p>
+                <p><strong>Business Contact Number 1:</strong> <span id="reviewContactNumber1"></span></p>
+                <p><strong>Business Contact Number 2:</strong> <span id="reviewContactNumber2"></span></p>
+                <p><strong>Email:</strong> <span id="reviewEmail"></span></p>
+                <p><strong>P.O. Box Number:</strong> <span id="reviewPoBox"></span></p>
+                <p><strong>District:</strong> <span id="reviewDistrict"></span></p>
+                <p><strong>Sub-county:</strong> <span id="reviewSubCounty"></span></p>
+                <p><strong>County:</strong> <span id="reviewCounty"></span></p>
+                <p><strong>Parish:</strong> <span id="reviewParish"></span></p>
+                <p><strong>Village (LC1):</strong> <span id="reviewVillage"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='enterpriseDetails.html'">Edit</button></p>
+            </div>
+
+            <!-- Enterprise Operation Details Section -->
+            <div class="review-section">
+                <h3>Enterprise Operation Details</h3>
+                <p><strong>Current Sector of Business Operation:</strong> <span id="reviewBusinessSector"></span></p>
+                <p><strong>Business Description:</strong> <span id="reviewBusinessDescription"></span></p>
+                <p><strong>Total Number of Employees:</strong> <span id="reviewEmployees"></span></p>
+                <p><strong>Monthly Revenues/Profit:</strong> <span id="reviewRevenues"></span></p>
+                <p><strong>Acquired Loan:</strong> <span id="reviewAcquiredLoan"></span></p>
+                <p><strong>Loan Amount:</strong> <span id="reviewLoanAmount"></span></p>
+                <p><strong>Outstanding Loan:</strong> <span id="reviewOutstandingLoan"></span></p>
+                <p><strong>Loan Acquisition Date:</strong> <span id="reviewLoanDate"></span></p>
+                <p><strong>Business Registered:</strong> <span id="reviewRegistered"></span></p>
+                <p><strong>URSB/TIN Number:</strong> <span id="reviewUrsbTin"></span></p>
+                <p><strong>Trading License:</strong> <span id="reviewTradingLicense"></span></p>
+                <p><strong>Registration Certificate:</strong> <span id="reviewRegistrationCertificate"></span></p>
+                <p><strong>Reason for Not Registering:</strong> <span id="reviewNotRegisteredReason"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='enterpriseOperation.html'">Edit</button></p>
+            </div>
+
+            <!-- Apprenticeship/Skills Training Section -->
+            <div class="review-section">
+                <h3>Apprenticeship/Skills Training</h3>
+                <p><strong>Benefited from Apprenticeship/Skills Training:</strong> <span id="reviewBenefited"></span></p>
+                <p><strong>Type of Skills Undertaken:</strong> <span id="reviewSkillsType"></span></p>
+                <p><strong>Duration of Training:</strong> <span id="reviewTrainingDuration"></span></p>
+                <p><strong>Desired Sector of Business Training:</strong> <span id="reviewDesiredSector"></span></p>
+                <p><button type="button" class="btn btn-outline-primary edit-btn" onclick="location.href='skillsTraining.html'">Edit</button></p>
+            </div>
+
+            <!-- Declaration Section -->
+            <div class="declaration-section">
+                <h3>Declaration</h3>
+                <p>I hereby declare that the information provided above is true and correct to the best of my knowledge and belief.</p>
+                <p><strong>Date:</strong> <span id="reviewDate"></span></p>
+                <div class="mb-3">
+                    <input type="checkbox" id="declarationCheckbox" required>
+                    <label for="declarationCheckbox">I agree to the terms and conditions</label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary" id="submitFormButton">Submit all and finish</button>
+        </div>
+
+      </div>
+      
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+  
+
+  <script src="basicInfo.js"></script>
+  <script src="category.js"></script>
+  <script src="physicalAddress.js"></script>
+  <script src="enterpriseDetails.js"></script>
+  <script src="operations.js"></script>
+ 
     <script>
-        $(function(){
-            // Initialize intl-tel-input
-            var input = document.querySelector("#phone");
-            window.intlTelInput(input, {
-                initialCountry: "auto",
-                geoIpLookup: function(success, failure) {
-                    $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-                        var countryCode = (resp && resp.country) ? resp.country : "us";
-                        success(countryCode);
-                    });
-                },
-                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // just for formatting/placeholders etc
+        function showPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.pages').forEach(page => {
+                page.style.display = 'none';
             });
 
-            // Handle form submission
-            $('#personalInfoForm').on('submit', function(event) {
-                event.preventDefault(); // Prevent the default form submission
+            // Display the selected page
+            document.querySelector(`#${page}`).style.display = 'block';
+        }
 
-                // Show a notification
-                alert('Form submitted successfully!');
-
-                // Proceed to the next page
-                window.location.href = 'category.html';
+        // Attach click event listeners to sidebar links
+        document.querySelectorAll("#sidebar .nav  li").forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                showPage(this.dataset.page); // Show the corresponding page
             });
         });
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+
+      
+
     </script>
 </body>
 </html>

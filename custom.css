@@ -4,59 +4,95 @@
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
-    font-style: normal;
-    background-color: white;
+    background-color: wheat;
     color: #212529;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border-bottom: 1px solid orange;
-    border-top: 1px solid orange;
+    position: relative;
+    padding-top: 56px; /* Adjust this value if your header height changes */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 15px;
-}
-
-/* Header styles */
-.site-header {
-    background-color: white;
-    color: #000;
-    padding: 10px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.header-logo img {
-    max-width: 120px;
-    height: auto;
-}
-
-.header-title {
     flex: 1;
-    text-align: center;
-    font-size: 1rem;
 }
 
-.header-logout .btn {
-    background-color: orange;
+#alertContainer {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
     color: white;
-    text-decoration: none;
-    padding: 10px 20px;
+    padding: 15px;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    z-index: 4000;
 }
 
-.header-logout .btn:hover {
-    background-color: forestgreen;
+#alertContainer p {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+
+/* Navbar styles */
+/* Navbar styles */
+.navbar {
+    background-color: white;
+    border-bottom: 1px solid #ddd; /* Optional: Add a border to distinguish the header */
+} 
+.navbar-toggler {
+    background-color: orange !important; /* Ensure it overrides any default styles */
+    border: none;
+    padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler-icon {
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    background-color: orange; /* Fallback color */
+    background: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="orange" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E') no-repeat center center / 70%; /* Adjust background size */
+    z-index: 2000;
+}
+
+
+
+.btn-success {
+    background-color: orange;
+    border-color: orange;
+}
+
+.btn-success:hover {
+    background-color: darkorange;
+    border-color: darkorange;
+}
+
+.btn-success:focus,
+.btn-success:active {
+    background-color: darkorange;
+    border-color: darkorange;
+    box-shadow: none;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
 }
 
 /* Form styles */
@@ -136,6 +172,51 @@ h2 {
     background-color: forestgreen;
     color: #fff;
 }
+
+/* Sidebar styles */
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: orange;
+    color: white;
+    padding: 15px;
+    border-right: 1px solid green; /* Example border style */
+}
+
+#sidebar ul {
+    margin-top: 60px;
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar li {
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border-bottom: 1px solid wheat;
+}
+
+#sidebar li:hover {
+    background-color: forestgreen;
+    color: white;
+}
+
+/* Page display styles */
+.pages {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+
 
 /* Media Queries */
 @media (max-width: 1200px) {

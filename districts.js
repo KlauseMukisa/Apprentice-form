@@ -1,4 +1,4 @@
-const districts = [
+const distrt = [
     { name: 'Abim', region: 'Northern' },
     { name: 'Adjumani', region: 'Northern' },
     { name: 'Agago', region: 'Northern' },
@@ -133,3 +133,16 @@ const districts = [
     { name: 'Yumbe', region: 'Northern' },
     { name: 'Zombo', region: 'Northern' }
 ];
+
+const dist = document.querySelector('.district')
+
+let select = document.createElement('select')
+select.classList.add('form-control')
+distrt.forEach(district =>{
+    let option = document.createElement('option')
+    option.value = district.name
+    option.innerText = district.name
+
+    select.appendChild(option)
+    dist.appendChild(select)
+})

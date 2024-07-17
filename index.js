@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     // Elements
     const loginModal = document.getElementById('loginModal');
@@ -45,11 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         if (validateLoginForm()) {
-            // Submit the form or send data to server
-            console.log('Login form submitted');
-            alert('Login successful!');
-            // Redirect to user dashboard or other page
-            window.location.href = 'basicInfo.html';
+            // Show success notification
+            Swal.fire({
+                icon: 'success',
+                title: 'Login successful!',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                // Redirect to user dashboard or other page
+                window.location.href = 'basicInfo.html';
+            });
         }
     });
 
@@ -139,4 +143,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Assign the togglePassword function to the global scope so it can be called from inline HTML
     window.togglePassword = togglePassword;
+
+    const registerForm = document.getElementById("registerForm");
+    const passwordInput = document.getElementById("password");
+    const passwordError = document.getElementById("passwordError");
+
+    registerForm.addEventListener("submit", function(event) {
+        if (!isValidPassword(passwordInput.value)) {
+            event.preventDefault();
+            passwordError.textContent = "Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character.";
+        } else {
+            passwordError.textContent = "";
+        }
+    });
+
+    function isValidPassword(password) {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return passwordRegex.test(password);
+    }
 });
