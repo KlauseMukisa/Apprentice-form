@@ -1,99 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-/* Global styles */
-body {
+
+
+/* Custom styles */ 
+body{
+   
     font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    background-color: wheat;
-    color: #212529;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    position: relative;
-    padding-top: 56px; /* Adjust this value if your header height changes */
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px;
-    flex: 1;
-}
-
-#alertContainer {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4caf50;
-    color: white;
-    padding: 15px;
-    border-radius: 4px;
-    z-index: 4000;
-}
-
-#alertContainer p {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-}
-
-
-/* Navbar styles */
-/* Navbar styles */
-.navbar {
-    background-color: white;
-    border-bottom: 1px solid #ddd; /* Optional: Add a border to distinguish the header */
-} 
-.navbar-toggler {
-    background-color: orange !important; /* Ensure it overrides any default styles */
-    border: none;
-    padding: 0.25rem 0.5rem;
-}
-
-.navbar-toggler-icon {
-    width: 1.5em;
-    height: 1.5em;
-    display: inline-block;
-    background-color: orange; /* Fallback color */
-    background: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="orange" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E') no-repeat center center / 70%; /* Adjust background size */
-    z-index: 2000;
+    font-weight: 400;
+    font-style: normal;
+    
+  
 }
 
 
 
-.btn-success {
+
+.bg-orange {
     background-color: orange;
-    border-color: orange;
 }
 
-.btn-success:hover {
-    background-color: darkorange;
-    border-color: darkorange;
+.nav-item {
+color: white;
+
 }
 
-.btn-success:focus,
-.btn-success:active {
-    background-color: darkorange;
-    border-color: darkorange;
-    box-shadow: none;
+.nav-item.nav-item:hoover{
+
+    background: forestgreen;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0.5rem;
-    }
-
-    .navbar-brand {
-        font-size: 1rem;
-    }
-
-    .btn-primary {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.875rem;
-    }
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0; /* Displayed on the left */
+    bottom: 0;
+    z-index: 100;
+    width: 250px;
+    padding-top: 5rem; /* Adjust based on your header height */
+    transition: all 0.3s ease;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
+
+.sidebar .sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 60px); /* Adjust based on your header height */
+    padding-top: 1rem;
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    left: -250px; /* Hidden on the left */
+}
+
 
 /* Form styles */
 h2 {
@@ -173,169 +133,30 @@ h2 {
     color: #fff;
 }
 
-/* Sidebar styles */
-#sidebar {
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-color: orange;
-    color: white;
-    padding: 15px;
-    border-right: 1px solid green; /* Example border style */
-}
-
-#sidebar ul {
-    margin-top: 60px;
-    list-style: none;
-    padding: 0;
-}
-
-#sidebar li {
-    color: white;
-    font-size: 16px;
-    padding: 10px 15px;
-    display: block;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-    border-bottom: 1px solid wheat;
-}
-
-#sidebar li:hover {
-    background-color: forestgreen;
-    color: white;
-}
-
-/* Page display styles */
-.pages {
-    display: none;
-}
-
-.hidden {
-    display: none;
-}
-
-
-
-/* Media Queries */
-@media (max-width: 1200px) {
-    .container {
-        padding: 10px;
-    }
-}
-
-@media (max-width: 992px) {
-    .header-title {
-        font-size: 1.25rem;
-    }
-
-    .header-logout .btn {
-        padding: 8px 16px;
-    }
-
-    .form-control {
-        font-size: 14px;
-    }
-
-    .btn {
-        font-size: 14px;
-    }
-
-    h2 {
-        font-size: 24px;
-    }
+.main-content {
+    transition: margin-left 0.3s;
+    margin-left: 250px; /* Same as sidebar width */
 }
 
 @media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        align-items: center;
+    .sidebar {
+        left: -250px; /* Hidden on smaller screens by default */
     }
-
-    .header-title {
-        text-align: center;
-        font-size: 1.25rem;
+    .sidebar.active {
+        left: 0; /* Slide in when active on smaller screens */
     }
-
-    .header-logo img {
-        max-width: 100px;
-    }
-
-    .header-logout .btn {
-        padding: 8px 16px;
-    }
-
-    .form-control {
-        font-size: 14px;
-    }
-
-    .btn {
-        font-size: 14px;
-    }
-
-    h2 {
-        font-size: 24px;
+    .main-content {
+        margin-left: 0; /* No margin on smaller screens */
     }
 }
-
-@media (max-width: 576px) {
-    .header-title {
-        font-size: 1rem;
-    }
-
-    .header-logout .btn {
-        padding: 6px 12px;
-    }
-
-    .form-control {
-        font-size: 12px;
-        padding: 8px;
-    }
-
-    .btn {
-        font-size: 12px;
-        padding: 8px 12px;
-    }
-
-    h2 {
-        font-size: 20px;
-    }
-
-    .form-container {
-        padding: 15px;
-    }
+/* custom.css */
+.nav-item:hover {
+    background-color: #ffc107; /* Change to your desired hover color */
 }
 
-/* Additional styles */
-.review-section {
-    margin-bottom: 20px;
+.nav-link:hover {
+    color: #212529; /* Change to your desired text color on hover */
 }
-
-.review-section h3 {
-    margin-top: 0;
-}
-
-.declaration-section {
-    margin-top: 20px;
-}
-
-.btn-primary {
-    background-color: orange;
-}
-
-.btn-primary:hover {
-    background-color: forestgreen;
-}
-
-.edit-link {
-    color: orange;
-    cursor: pointer;
-    text-decoration: none;
-    margin-top: 5px;
-    display: inline-block;
-}
-
-.edit-link:hover {
-    color: forestgreen;
-}
+.nav-item {
+    margin-bottom: 15px; /* Adjust margin between nav items */
+} 

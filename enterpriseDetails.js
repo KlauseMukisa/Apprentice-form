@@ -1,67 +1,72 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const enterpriseForm = document.getElementById('enterpriseForm');
-    const alertContainer = document.getElementById('alertContainer');
-    const alertMessage = document.getElementById('alertMessage');
-    const page4 = document.getElementById('page4');
-    const page5 = document.getElementById('page5');
-    const ownershipTypeSelect = document.getElementById('ownershipType');
-    const womenOwnershipContainer = document.getElementById('womenOwnershipContainer');
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector("#enterpriseForm");
+    const ownershipType = document.querySelector("#ownershipType");
+    const womenOwnershipContainer = document.querySelector("#womenOwnershipContainer");
+    const contactNumber1 = document.querySelector("#contactNumber1");
+    const contactNumber2 = document.querySelector("#contactNumber2");
+    const districtSelect = document.querySelector("#district");
 
-    // Event listener for ownership type change
-    ownershipTypeSelect.addEventListener('change', function () {
-        if (this.value === 'jointly') {
+    // Initialize intl-tel-input for phone number fields
+    const iti1 = intlTelInput(contactNumber1, {
+        initialCountry: "ug",
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+
+    const iti2 = intlTelInput(contactNumber2, {
+        initialCountry: "ug",
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+
+    // Populate districts
+    const districts = ["Kampala", "Wakiso", "Mukono", "Gulu", "Lira", "Mbale", "Jinja", "Soroti", "Mbarara", "Kabale", "Kasese", "Bushenyi"];
+    districts.forEach(district => {
+        const option = document.createElement("option");
+        option.value = district;
+        option.textContent = district;
+        districtSelect.appendChild(option);
+    });
+
+    // Show women ownership field based on ownership type
+    ownershipType.addEventListener("change", function() {
+        if (ownershipType.value === "Joint Ownership") {
             womenOwnershipContainer.style.display = 'block';
+            document.querySelector("#womenOwnership").required = true;
         } else {
             womenOwnershipContainer.style.display = 'none';
-            document.getElementById('womenOwnership').value = ''; // Clear the field if hidden
+            document.querySelector("#womenOwnership").required = false;
         }
     });
 
-    // Event listener for form submission
-    enterpriseForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent form submission
+    // Handle form submission with validation
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        if (form.checkValidity() === false) {
+            event.stopPropagation();
+            form.classList.add("was-validated");
+        } else {
+            // Additional validation for intl-tel-input fields
+            if (!iti1.isValidNumber() || !iti2.isValidNumber()) {
+                Swal.fire({
+                    title: "Error!",
+                    text: "Please enter valid phone numbers.",
+                    icon: "error",
+                });
+                return;
+            }
 
-        // Example validation, adjust as needed
-        if (!validateEnterpriseForm()) {
-            return; // Validation failed, do not proceed
+            Swal.fire({
+                title: "Success!",
+                text: "Form submitted successfully!",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 2000 // Auto-dismiss after 2 seconds
+            }).then(() => {
+                setTimeout(() => {
+                    document.getElementById('page4').style.display = 'none';
+                    // Assuming the next page has the ID 'page5'
+                    document.getElementById('page5').style.display = 'block'; 
+                }, 2000);
+            });
         }
-
-        // Example: Get form data
-        const enterpriseData = {
-            enterpriseName: document.getElementById('enterpriseName').value,
-            ownershipType: document.getElementById('ownershipType').value,
-            womenOwnership: document.getElementById('womenOwnership').value,
-            establishmentYear: document.getElementById('establishmentYear').value,
-            // Add other form fields as needed
-        };
-
-        // Example: Log or process the data
-        console.log('Enterprise Data:', enterpriseData);
-
-        // Display success message and navigate to next page after delay
-        alertMessage.textContent = 'Form submitted successfully!';
-        alertContainer.style.display = 'block';
-        setTimeout(() => {
-            alertContainer.style.display = 'none';
-            page4.style.display = 'none';
-            page5.style.display = 'block';
-            // Change this to the actual next page URL or show/hide logic
-        }, 2000);
     });
-
-    // Example: Validate form fields
-    function validateEnterpriseForm() {
-        // Example: Validate required fields
-        const enterpriseName = document.getElementById('enterpriseName').value;
-        const ownershipType = document.getElementById('ownershipType').value;
-        const establishmentYear = document.getElementById('establishmentYear').value;
-        // Validate other fields as needed
-
-        if (!enterpriseName || !ownershipType || !establishmentYear) {
-            alert('Please fill in all required fields.');
-            return false; // Validation failed
-        }
-
-        return true; // Return true if validation passes
-    }
 });

@@ -1,33 +1,47 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", function() {
     const phoneInputField = document.querySelector("#phone");
-    const phoneInput = window.intlTelInput(phoneInputField, {
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-        initialCountry: "ug", // Set the default country to Uganda (you can change this to any country)
-        preferredCountries: ["ug", "ke", "tz", "rw", "us"], // You can add more preferred countries
-        separateDialCode: true
+    const iti = window.intlTelInput(phoneInputField, {
+        initialCountry: "auto",
+        geoIpLookup: function(success, failure) {
+            fetch("https://ipinfo.io/json")
+                .then(response => response.json())
+                .then(data => success(data.country))
+                .catch(() => success("US"));
+        },
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+
+    const form = document.querySelector("#personalInfoForm");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        if (form.checkValidity() === false) {
+            form.classList.add("was-validated");
+            return;
+        }
+
+        if (!iti.isValidNumber()) {
+            swal({
+                title: "Invalid phone number!",
+                text: "Please enter a valid phone number.",
+                icon: "error",
+                buttons: false,
+                timer: 2000 // Auto-dismiss after 2 seconds
+            });
+            return;
+        }
+
+        swal({
+            title: "Success!",
+            text: "Form submitted successfully!",
+            icon: "success",
+            buttons: false,
+            timer: 2000 // Auto-dismiss after 2 seconds
+        }).then(() => {
+            setTimeout(() => {
+                document.getElementById('page1').style.display = 'none';
+                document.getElementById('page2').style.display = 'block';
+            }, 2000); // Wait for the notification to be visible before transitioning
+        });
     });
 });
-
-document.addEventListener('DOMContentLoaded', function () {
-    const personalInfoForm = document.getElementById('personalInfoForm');
-    const alertContainer = document.getElementById('alertContainer');
-    const alertMessage = document.getElementById('alertMessage');
-    const page1 = document.getElementById('page1');
-    const page2 = document.getElementById('page2');
-
-    personalInfoForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent form submission
-
-        // Display alert notification
-        alertMessage.textContent = 'Form submitted successfully!';
-        alertContainer.style.display = 'block';
-
-        // Hide the alert after 2 seconds and navigate to the next page
-        setTimeout(function () {
-            alertContainer.style.display = 'none';
-            page1.style.display = 'none';
-            page2.style.display = 'block';
-        }, 2000);
-    });
-});
-

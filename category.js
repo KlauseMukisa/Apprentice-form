@@ -1,39 +1,38 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector("#apprenticeForm");
+    
+    // Handle disability radio buttons
+    const disabilityYes = document.querySelector("#disabilityYes");
+    const disabilityNo = document.querySelector("#disabilityNo");
+    const disabilityTypeContainer = document.querySelector("#disabilityTypeContainer");
 
-document.addEventListener('DOMContentLoaded', function () {
-    const disabilityYes = document.getElementById('disabilityYes');
-    const disabilityNo = document.getElementById('disabilityNo');
-    const disabilityTypeContainer = document.getElementById('disabilityTypeContainer');
-    const apprenticeForm = document.getElementById('apprenticeForm');
-    const alertContainer = document.getElementById('alertContainer');
-    const alertMessage = document.getElementById('alertMessage');
-
-    disabilityYes.addEventListener('change', function () {
-        if (disabilityYes.checked) {
-            disabilityTypeContainer.style.display = 'block';
-        }
+    disabilityYes.addEventListener("change", function() {
+        disabilityTypeContainer.style.display = 'block';
     });
 
-    disabilityNo.addEventListener('change', function () {
-        if (disabilityNo.checked) {
-            disabilityTypeContainer.style.display = 'none';
-        }
+    disabilityNo.addEventListener("change", function() {
+        disabilityTypeContainer.style.display = 'none';
     });
 
-    apprenticeForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent form submission
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-        // Display alert notification
-        alertMessage.textContent = 'Form submitted successfully!';
-        alertContainer.style.display = 'block';
+        if (form.checkValidity() === false) {
+            form.classList.add("was-validated");
+            return;
+        }
 
-        // Hide the alert after 2 seconds and navigate to the next page
-        setTimeout(function () {
-            alertContainer.style.display = 'none';
-
-            // Navigate to the next page (you can replace this with your actual navigation logic)
-            document.getElementById('page2').style.display = 'none';
-            document.getElementById('page3').style.display = 'block'; // Ensure page3 exists and is the next page
-        }, 2000);
+        swal({
+            title: "Success!",
+            text: "Form submitted successfully!",
+            icon: "success",
+            buttons: false,
+            timer: 2000 // Auto-dismiss after 2 seconds
+        }).then(() => {
+            setTimeout(() => {
+                document.getElementById('page2').style.display = 'none';
+                document.getElementById('page3').style.display = 'block'; // Make sure this ID matches your next page ID
+            }, 2000); // Wait for the notification to be visible before transitioning
+        });
     });
 });
-

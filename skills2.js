@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
             Swal.fire({
                 title: "Success!",
                 text: "Form submitted successfully!",
-                icon: "success",
+                icon: "success", 
                 showConfirmButton: false,
                 timer: 2000 // Auto-dismiss after 2 seconds
             }).then(() => {
