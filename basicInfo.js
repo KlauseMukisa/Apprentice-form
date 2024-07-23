@@ -1,47 +1,31 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const phoneInputField = document.querySelector("#phone");
-    const iti = window.intlTelInput(phoneInputField, {
-        initialCountry: "auto",
-        geoIpLookup: function(success, failure) {
-            fetch("https://ipinfo.io/json")
-                .then(response => response.json())
-                .then(data => success(data.country))
-                .catch(() => success("US"));
-        },
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    // Initialize the intl-tel-input plugin
+    const input = document.querySelector("#phone");
+    const iti = window.intlTelInput(input, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // For formatting/placeholders etc.
     });
 
-    const form = document.querySelector("#personalInfoForm");
+    // Handle form submission
+    const form = document.getElementById("personalInfoForm");
     form.addEventListener("submit", function(event) {
-        event.preventDefault();
+        event.preventDefault(); // Prevent the form from submitting normally
 
-        if (form.checkValidity() === false) {
-            form.classList.add("was-validated");
-            return;
-        }
-
-        if (!iti.isValidNumber()) {
-            swal({
-                title: "Invalid phone number!",
-                text: "Please enter a valid phone number.",
-                icon: "error",
-                buttons: false,
-                timer: 2000 // Auto-dismiss after 2 seconds
+        if (form.checkValidity()) {
+            // Show success notification
+            Swal.fire({
+                icon: 'success',
+                title: 'Form Submitted',
+                text: 'Your personal information has been submitted successfully.',
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                // Hide page1 and show page2
+                document.getElementById("page1").style.display = "none";
+                document.getElementById("page2").style.display = "block";
             });
-            return;
+        } else {
+            // Handle form validation errors
+            form.classList.add('was-validated');
         }
-
-        swal({
-            title: "Success!",
-            text: "Form submitted successfully!",
-            icon: "success",
-            buttons: false,
-            timer: 2000 // Auto-dismiss after 2 seconds
-        }).then(() => {
-            setTimeout(() => {
-                document.getElementById('page1').style.display = 'none';
-                document.getElementById('page2').style.display = 'block';
-            }, 2000); // Wait for the notification to be visible before transitioning
-        });
     });
 });

@@ -1,47 +1,56 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Event listener for loan radio buttons
-    document.querySelectorAll('input[name="loan"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                document.getElementById('loanDetailsContainer').style.display = 'block';
-            } else {
-                document.getElementById('loanDetailsContainer').style.display = 'none';
-            }
-        });
+$(document).ready(function() {
+    // Show/Hide loan details based on loan field
+    $('input[name="loan"]').on('change', function() {
+        if ($('#loanYes').is(':checked')) {
+            $('#loanDetailsContainer').show();
+        } else {
+            $('#loanDetailsContainer').hide();
+        }
     });
 
-    // Event listener for registration radio buttons
-    document.querySelectorAll('input[name="registered"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                document.getElementById('registrationDetailsContainer').style.display = 'block';
-            } else {
-                document.getElementById('registrationDetailsContainer').style.display = 'none';
-                document.getElementById('notRegisteredReason').value = ''; // Clear reason textarea
-            }
-        });
+    // Show/Hide registration details based on registration field
+    $('input[name="registered"]').on('change', function() {
+        if ($('#registeredYes').is(':checked')) {
+            $('#registrationDetailsContainer').show();
+            $('#notRegisteredReasonContainer').hide();
+        } else if ($('#registeredNo').is(':checked')) {
+            $('#registrationDetailsContainer').hide();
+            $('#notRegisteredReasonContainer').show();
+        }
     });
 
-    // Form submission handling
-    document.getElementById('operationForm').addEventListener('submit', function(event) {
+    // Form submission handler
+    $('#operationForm').on('submit', function(event) {
         event.preventDefault(); // Prevent default form submission
 
-        // Show SweetAlert notification
-        Swal.fire({
-            icon: 'success',
-            title: 'Form submitted successfully!',
-            showConfirmButton: false,
-            timer: 1500 // Automatically close alert after 1.5 seconds
+        let isValid = true;
+        $(this).find('[required]').each(function() {
+            if ($(this).val() === '' || $(this).val() === null) {
+                $(this).addClass('is-invalid');
+                isValid = false;
+            } else {
+                $(this).removeClass('is-invalid');
+            }
         });
 
-        // Delay before navigating to the next page (adjust as needed)
-        setTimeout(function() {
-            // Hide current page
-            document.getElementById('page5').style.display = 'none';
-
-            // Show next section or navigate to the next form part (replace with actual navigation logic)
-            // Example: Show next section (assuming you have multiple sections on the same page)
-            document.getElementById('page6').style.display = 'block';
-        }, 1500); // Delay matches SweetAlert timer
+        if (isValid) {
+            Swal.fire({
+                title: 'Success!',
+                text: 'Your enterprise operation details have been submitted successfully.',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2000
+            }).then(function() {
+                $('#page5').hide();
+                $('#page6').show();
+            });
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please fill in all required fields.',
+                icon: 'error',
+                confirmButtonText: 'Okay'
+            });
+        }
     });
 });

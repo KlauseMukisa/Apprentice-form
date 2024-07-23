@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Include your custom CSS file -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .card {
+            border: none;
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #228B22; /* Forest Green */
+            color: #fff;
+            font-weight: bold;
+        }
+        .profile-image {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border: 2px solid #228B22; /* Forest Green */
+        }
+        .form-control {
+            border-radius: 0.25rem;
+        }
+        .btn-custom {
+            background-color: #FFA500; /* Orange */
+            color: #fff;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #cc8400;
+        }
+        .notification {
+            display: none;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            color: #fff;
+            z-index: 1000;
+        }
+        .notification-success {
+            background-color: #28a745;
+        }
+        .notification-error {
+            background-color: #dc3545;
+        }
+        .password-toggle {
+            position: relative;
+        }
+        .password-toggle .toggle-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #6c757d;
+        }
+
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 15px;
+            }
+        }
+        @media (max-width: 992px) {
+            .card-body {
+                padding: 10px;
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .card-header {
+                font-size: 1.25rem;
+            }
+            .form-control {
+                width: 100%;
+            }
+        }
+        @media (max-width: 576px) {
+            .card-header {
+                font-size: 1.1rem;
+            }
+            .form-control {
+                font-size: 0.875rem;
+            }
+            .btn-custom {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="notification notification-success" id="successNotification">Profile updated successfully!</div>
+<div class="notification notification-error" id="errorNotification">Failed to update profile.</div>
+
+<div id="page8" class="container mt-4 pages form-container">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="https://via.placeholder.com/120" alt="Profile Picture" class="profile-image mb-3">
+            <h3 id="profileName">John Doe</h3>
+            <p id="profileEmail">john.doe@example.com</p>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Profile Details</div>
+                <div class="card-body">
+                    <form id="profileForm">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="profileFirstName">First Name</label>
+                                <input type="text" id="profileFirstName" class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="profileLastName">Last Name</label>
+                                <input type="text" id="profileLastName" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="profileEmail">Email</label>
+                                <input type="email" id="profileEmail" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12 password-toggle">
+                                <label for="profilePassword">Password</label>
+                                <input type="password" id="profilePassword" class="form-control">
+                                <span class="toggle-icon" id="togglePassword">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM8 13.5c-4.005 0-7.174-3.134-7.937-4.406A12.184 12.184 0 0 1 8 3.5c4.005 0 7.174 3.134 7.937 4.406A12.184 12.184 0 0 1 8 13.5z"/>
+                                        <path d="M8 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="profilePhone">Phone Number</label>
+                                <input type="text" id="profilePhone" class="form-control">
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button type="button" id="saveChangesBtn" class="btn btn-custom">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const userData = {
+            firstName: "John",
+            lastName: "Doe",
+            email: "john.doe@example.com",
+            password: "password123",
+            phone: "+123456789"
+        };
+
+        document.getElementById("profileFirstName").value = userData.firstName;
+        document.getElementById("profileLastName").value = userData.lastName;
+        document.getElementById("profileEmail").value = userData.email;
+        document.getElementById("profilePassword").value = userData.password;
+        document.getElementById("profilePhone").value = userData.phone;
+
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordField = document.getElementById("profilePassword");
+
+        togglePassword.addEventListener("click", function() {
+            const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+            this.innerHTML = type === "password" ? 
+                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM8 13.5c-4.005 0-7.174-3.134-7.937-4.406A12.184 12.184 0 0 1 8 3.5c4.005 0 7.174 3.134 7.937 4.406A12.184 12.184 0 0 1 8 13.5z"/><path d="M8 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>' : 
+                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16"><path d="M13.359 11.238a8.108 8.108 0 0 0 1.273-.803L9.293 9.41a3.004 3.004 0 0 1-1.532-1.532L5.833 5.186a8.108 8.108 0 0 0-.704 2.369zm-2.848-1.315l1.5 1.5a8.07 8.07 0 0 0 1.225-.636L9.293 6.12a3.008 3.008 0 0 1-1.225-.636L8 5.53v.03a3 3 0 0 1-4.02 4.02zm2.198 3.1l-3.3 3.3a12.169 12.169 0 0 1-3.828-.742 12.184 12.184 0 0 1 3.828-.742 12.184 12.184 0 0 1 3.3 3.3zM11.95 10.1c.347.347.674.674 1.225 1.225l-3.3 3.3a12.184 12.184 0 0 1-3.3-3.3 12.169 12.169 0 0 1 3.3-3.3 12.169 12.169 0 0 1 3.3 3.3zM9.3 5.186a12.184 12.184 0 0 1-3.828.742 12.169 12.169 0 0 1 3.828-.742zm1.532 1.532a3.004 3.004 0 0 1-1.532-1.532L6.22 5.186a8.108 8.108 0 0 0 2.369-.704zm.905-3.042A12.169 12.169 0 0 1 8 3.5a12.184 12.184 0 0 1-3.828.742 12.184 12.184 0 0 1 3.828.742 12.184 12.184 0 0 1 3.828-.742 12.184 12.184 0 0 1 3.828.742 12.169 12.169 0 0 1-3.828-.742zm2.034 2.358a12.169 12.169 0 0 0 2.034-2.358A12.184 12.184 0 0 0 8 3.5a12.184 12.184 0 0 0-2.034 2.358 12.169 12.169 0 0 0 2.034 2.358zm-2.2-.53a8.108 8.108 0 0 0 2.369-.704L9.293 4.12a3.008 3.008 0 0 1-.637 1.225zm-.907-1.532a3.004 3.004 0 0 1 1.532-1.532L5.186 4.186a8.108 8.108 0 0 0-.704 2.369zm-.003.907a8.108 8.108 0 0 0-.704-2.369L9.293 4.12a3.004 3.004 0 0 1-1.532 1.532zm-.742 3.828a12.184 12.184 0 0 1-.742-3.828A12.184 12.184 0 0 1 8 8c.384 0 .762-.034 1.125-.1L6.99 6.837z"/></svg>';
+        });
+
+        document.getElementById("saveChangesBtn").addEventListener("click", function() {
+            const updatedUserData = {
+                firstName: document.getElementById("profileFirstName").value,
+                lastName: document.getElementById("profileLastName").value,
+                email: document.getElementById("profileEmail").value,
+                password: document.getElementById("profilePassword").value,
+                phone: document.getElementById("profilePhone").value
+            };
+
+            setTimeout(() => {
+                showNotification("success");
+            }, 1000);
+        });
+
+        function showNotification(type) {
+            const successNotification = document.getElementById("successNotification");
+            const errorNotification = document.getElementById("errorNotification");
+            if (type === "success") {
+                successNotification.style.display = "block";
+                setTimeout(() => successNotification.style.display = "none", 3000);
+            } else {
+                errorNotification.style.display = "block";
+                setTimeout(() => errorNotification.style.display = "none", 3000);
+            }
+        }
+    });
+</script>
+</body>
+</html>

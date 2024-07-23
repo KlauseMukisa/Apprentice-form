@@ -1,71 +1,44 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.querySelector("#enterpriseForm");
-    const ownershipType = document.querySelector("#ownershipType");
-    const womenOwnershipContainer = document.querySelector("#womenOwnershipContainer");
-    const contactNumber1 = document.querySelector("#contactNumber1");
-    const contactNumber2 = document.querySelector("#contactNumber2");
-    const districtSelect = document.querySelector("#district");
-
-    // Initialize intl-tel-input for phone number fields
-    const iti1 = intlTelInput(contactNumber1, {
-        initialCountry: "ug",
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
-    });
-
-    const iti2 = intlTelInput(contactNumber2, {
-        initialCountry: "ug",
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
-    });
-
-    // Populate districts
-    const districts = ["Kampala", "Wakiso", "Mukono", "Gulu", "Lira", "Mbale", "Jinja", "Soroti", "Mbarara", "Kabale", "Kasese", "Bushenyi"];
-    districts.forEach(district => {
-        const option = document.createElement("option");
-        option.value = district;
-        option.textContent = district;
-        districtSelect.appendChild(option);
-    });
-
-    // Show women ownership field based on ownership type
-    ownershipType.addEventListener("change", function() {
-        if (ownershipType.value === "Joint Ownership") {
-            womenOwnershipContainer.style.display = 'block';
-            document.querySelector("#womenOwnership").required = true;
+$(document).ready(function() {
+    // Show/Hide fields based on the type of business ownership
+    $('#ownershipType').on('change', function() {
+        if ($(this).val() === 'Joint Ownership') {
+            $('#womenOwnershipContainer').show();
         } else {
-            womenOwnershipContainer.style.display = 'none';
-            document.querySelector("#womenOwnership").required = false;
+            $('#womenOwnershipContainer').hide();
         }
     });
 
-    // Handle form submission with validation
-    form.addEventListener("submit", function(event) {
-        event.preventDefault();
-        if (form.checkValidity() === false) {
-            event.stopPropagation();
-            form.classList.add("was-validated");
-        } else {
-            // Additional validation for intl-tel-input fields
-            if (!iti1.isValidNumber() || !iti2.isValidNumber()) {
-                Swal.fire({
-                    title: "Error!",
-                    text: "Please enter valid phone numbers.",
-                    icon: "error",
-                });
-                return;
-            }
+    // Form submission handler
+    $('#enterpriseForm').on('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
 
+        let isValid = true;
+        $(this).find('[required]').each(function() {
+            if ($(this).val() === '' || $(this).val() === null) {
+                $(this).addClass('is-invalid');
+                isValid = false;
+            } else {
+                $(this).removeClass('is-invalid');
+            }
+        });
+
+        if (isValid) {
             Swal.fire({
-                title: "Success!",
-                text: "Form submitted successfully!",
-                icon: "success",
+                title: 'Success!',
+                text: 'Your enterprise basic details have been submitted successfully.',
+                icon: 'success',
                 showConfirmButton: false,
-                timer: 2000 // Auto-dismiss after 2 seconds
-            }).then(() => {
-                setTimeout(() => {
-                    document.getElementById('page4').style.display = 'none';
-                    // Assuming the next page has the ID 'page5'
-                    document.getElementById('page5').style.display = 'block'; 
-                }, 2000);
+                timer: 2000
+            }).then(function() {
+                $('#page4').hide();
+                $('#page5').show();
+            });
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please fill in all required fields.',
+                icon: 'error',
+                confirmButtonText: 'Okay'
             });
         }
     });

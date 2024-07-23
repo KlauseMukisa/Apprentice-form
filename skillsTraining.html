@@ -1,106 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills Training</title>
-    <link rel="stylesheet" href="custom.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="container header-container">
-            <div class="header-logo">
-                <a href="basicInfo.html">
-                    <img src="grow_logo.jpg" alt="Company Logo">
-                </a>
-            </div>
-            <div class="header-title">
-                <h1>Apprentice Application Form</h1>
-            </div>
-            <div class="header-logout">
-                <a href="index.html" class="btn btn-primary">Log Out</a>
+<div id="page6" class="container mt-4 pages form-container">
+    <h2>Skills Training</h2>
+    <form id="operationForm" novalidate>
+        <div class="mb-3">
+            <label class="form-label">Have you ever benefited from any apprenticeship/skills training programme?*</label>
+            <div>
+                <input type="radio" id="trainingYes" name="training" value="yes" required>
+                <label for="trainingYes">Yes</label>
+                <input type="radio" id="trainingNo" name="training" value="no" required>
+                <label for="trainingNo">No</label>
+                <div class="invalid-feedback">Please select an option.</div>
             </div>
         </div>
-    </header>
-
-    <div class="container">
-        <div class="form-container">
-            <h2>Skills Training</h2>
-            <form id="operationForm">
-                <div class="mb-3">
-                    <label class="form-label">Have you ever benefited from any apprenticeship/skills training programme?</label>
-                    <div>
-                        <input type="radio" id="trainingYes" name="training" value="yes">
-                        <label for="trainingYes">Yes</label>
-                        <input type="radio" id="trainingNo" name="training" value="no">
-                        <label for="trainingNo">No</label>
-                    </div>
-                </div>
-                <div id="trainingDetailsContainer" style="display: none;">
-                    <div class="mb-3">
-                        <label for="skillsType" class="form-label">Type of Skills Undertaken</label>
-                        <input type="text" class="form-control" id="skillsType" name="skillsType">
-                    </div>
-                    <div class="mb-3">
-                        <label for="trainingDuration" class="form-label">Duration of Training</label>
-                        <input type="text" class="form-control" id="trainingDuration" name="trainingDuration">
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="desiredSector" class="form-label">What is your desired sector of business training?</label>
-                    <select class="form-control" id="desiredSector" name="desiredSector" required>
-                        <option value="" disabled selected>Select</option>
-                        <option value="Agriculture">Agriculture</option>
-                        <option value="Manufacturing">Manufacturing</option>
-                        <option value="Services">Services</option>
-                        <option value="Retail">Retail</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Next</button>
-            </form>
+        <div id="trainingDetailsContainer" style="display: none;">
+            <div class="mb-3">
+                <label for="skillsType" class="form-label">Type of Skills Undertaken*</label>
+                <input type="text" class="form-control" id="skillsType" name="skillsType" required>
+                <div class="invalid-feedback">Please enter the type of skills undertaken.</div>
+            </div>
+            <div class="mb-3">
+                <label for="trainingDuration" class="form-label">Duration of Training*</label>
+                <input type="text" class="form-control" id="trainingDuration" name="trainingDuration" required>
+                <div class="invalid-feedback">Please enter the duration of training.</div>
+            </div>
         </div>
-    </div>
+        <div class="mb-3">
+            <label for="desiredSector" class="form-label">What is your desired sector of business Apprentice?*</label>
+            <select class="form-control" id="desiredSector" name="desiredSector" required>
+                <option value="" disabled selected>Select</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Services">Services</option>
+                <option value="Retail">Retail</option>
+                <option value="Other">Other</option>
+            </select>
+            <div class="invalid-feedback">Please select a desired sector.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit and continue</button>
+    </form>
+</div>
 
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <!-- Your script to handle form interactions -->
-    <script>
-        $(function() {
-            // Function to show or hide training details based on radio button selection
-            $('input[name="training"]').on('change', function() {
-                if ($('#trainingYes').is(':checked')) {
-                    $('#trainingDetailsContainer').show();
-                } else {
-                    $('#trainingDetailsContainer').hide();
-                }
-            });
-
-            // Handle form submission
-            $('#operationForm').on('submit', function(event) {
-                event.preventDefault(); // Prevent the default form submission
-
-                // Validate all fields are filled if necessary
-                let isValid = true;
-                $('#operationForm input, #operationForm select, #operationForm textarea').each(function() {
-                    if ($(this).prop('required') && !$(this).val()) {
-                        isValid = false;
-                        alert('Please fill all required fields.');
-                        return false;
-                    }
-                });
-
-                if (isValid) {
-                    // Show a notification (replace with actual form processing logic)
-                    alert('Form submitted successfully!');
-
-                    // Proceed to the next page (update to the actual next page URL)
-                    window.location.href = 'submit.html';
-                }
-            });
-        });
-    </script>
-</body>
-</html>

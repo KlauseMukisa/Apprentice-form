@@ -1,0 +1,35 @@
+.page {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.page.show {
+    opacity: 1;
+    display: block;
+}
+
+.page.hide {
+    display: none;
+}
+
+.pages {
+    display: none;
+}
+
+/* Show active page */
+.pages.active {
+    display: block;
+}
+
+/* Hide invalid feedback by default */
+.invalid-feedback {
+    display: none;
+}
+
+/* Show invalid feedback when input is invalid */
+.was-validated .form-control:invalid + .invalid-feedback {
+    display: block;
+}
