@@ -1,389 +1,244 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apprentice Application Report</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Include your custom CSS file -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-        .header, .footer {
-            background-color: orange;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        .header h1, .footer p {
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
-        .card {
-            border: none;
-            margin-bottom: 20px;
-        }
-        .card-header {
-            background-color: orange;
-            color: #fff;
-            font-weight: bold;
-        }
-        .table th, .table td {
-            vertical-align: middle;
-        }
-        .form-control {
-            border-radius: 0.25rem;
-        }
-        .notification {
-            display: none;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 15px;
-            border-radius: 5px;
-            color: #fff;
-            z-index: 1000;
-        }
-        .notification-success {
-            background-color: #28a745;
-        }
-        .notification-error {
-            background-color: #dc3545;
-        }
-
-        /* Media Queries */
-        @media (max-width: 1200px) {
-            .container {
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .card-body {
-                padding: 10px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            .card-header {
-                font-size: 1.25rem;
-            }
-            .table th, .table td {
-                font-size: 0.875rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .header h1, .footer p {
-                font-size: 1.25rem;
-            }
-            .card-header {
-                font-size: 1.1rem;
-            }
-            .table th, .table td {
-                display: block;
-                width: 100%;
-                box-sizing: border-box;
-                padding: 0.5rem;
-                font-size: 0.875rem;
-            }
-            .table th {
-                text-align: left;
-                font-weight: bold;
-                background-color: #f8f9fa;
-            }
-            .table td {
-                border-top: 1px solid #dee2e6;
-                margin-bottom: 1rem;
-            }
-            .form-control {
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="header">
-    <h1>Apprentice Application Report</h1>
-</div>
-
-<div class="notification notification-success" id="successNotification">Changes saved successfully!</div>
-<div class="notification notification-error" id="errorNotification">Failed to save changes.</div>
-
-<div class="container mt-4 pages">
-    <!-- Basic Information -->
+<div id="page7" class="container mt-4 pages form-container">
     <div class="card mb-4">
         <div class="card-header">Basic Information</div>
         <div class="card-body">
             <table class="table table-striped">
                 <tr>
                     <th>Surname</th>
-                    <td><input type="text" id="reportSurname" class="form-control"></td>
+                    <td id="reportSurname"></td>
                 </tr>
                 <tr>
                     <th>Other Names</th>
-                    <td><input type="text" id="reportOtherNames" class="form-control"></td>
+                    <td id="reportOtherNames"></td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td><input type="email" id="reportEmail" class="form-control"></td>
+                    <td id="reportEmail"></td>
                 </tr>
                 <tr>
                     <th>Phone Number</th>
-                    <td><input type="text" id="reportPhoneNumber" class="form-control"></td>
+                    <td id="reportPhoneNumber"></td>
                 </tr>
                 <tr>
                     <th>Gender</th>
-                    <td>
-                        <select id="reportGender" class="form-control">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </td>
+                    <td id="reportGender"></td>
                 </tr>
                 <tr>
                     <th>Marital Status</th>
-                    <td>
-                        <select id="reportMaritalStatus" class="form-control">
-                            <option value="Single">Single</option>
-                            <option value="Married">Married</option>
-                            <option value="Divorced">Divorced</option>
-                            <option value="Widowed">Widowed</option>
-                        </select>
-                    </td>
+                    <td id="reportMaritalStatus"></td>
                 </tr>
                 <tr>
                     <th>Age</th>
-                    <td><input type="number" id="reportAge" class="form-control"></td>
+                    <td id="reportAge"></td>
                 </tr>
             </table>
         </div>
     </div>
 
-    <!-- Enterprise Basic Details -->
+    <div class="card mb-4">
+        <div class="card-header">Category of Applicant</div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Category</th>
+                    <td id="reportCategory"></td>
+                </tr>
+                <tr id="reportCategorySpecificRow" style="display: none;">
+                    <th>Category Details</th>
+                    <td id="reportCategorySpecific"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">Nationality and Residence</div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Nationality</th>
+                    <td id="reportNationality"></td>
+                </tr>
+                <tr>
+                    <th>Country of Residence</th>
+                    <td id="reportResidenceCountry"></td>
+                </tr>
+                <tr id="reportNINRow" style="display: none;">
+                    <th>National Identification Number (NIN)</th>
+                    <td id="reportNIN"></td>
+                </tr>
+                <tr id="reportPassportRow" style="display: none;">
+                    <th>Passport Number</th>
+                    <td id="reportPassport"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
     <div class="card mb-4">
         <div class="card-header">Enterprise Basic Details</div>
         <div class="card-body">
             <table class="table table-striped">
                 <tr>
                     <th>Enterprise Name</th>
-                    <td><input type="text" id="reportEnterpriseName" class="form-control"></td>
+                    <td id="reportEnterpriseName"></td>
                 </tr>
                 <tr>
                     <th>Type of Business Ownership</th>
-                    <td><input type="text" id="reportOwnershipType" class="form-control"></td>
+                    <td id="reportOwnershipType"></td>
                 </tr>
                 <tr>
                     <th>Women Ownership</th>
-                    <td><input type="text" id="reportWomenOwnership" class="form-control"></td>
+                    <td id="reportWomenOwnership"></td>
                 </tr>
                 <tr>
                     <th>Year of Establishment</th>
-                    <td><input type="date" id="reportEstablishmentYear" class="form-control"></td>
+                    <td id="reportEstablishmentYear"></td>
                 </tr>
                 <tr>
                     <th>Business Contact Number 1</th>
-                    <td><input type="text" id="reportContactNumber1" class="form-control"></td>
+                    <td id="reportContactNumber1"></td>
                 </tr>
                 <tr>
                     <th>Business Contact Number 2</th>
-                    <td><input type="text" id="reportContactNumber2" class="form-control"></td>
+                    <td id="reportContactNumber2"></td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td><input type="email" id="reportBusinessEmail" class="form-control"></td>
+                    <td id="reportBusinessEmail"></td>
                 </tr>
                 <tr>
                     <th>P.O. Box Number</th>
-                    <td><input type="text" id="reportPoBox" class="form-control"></td>
+                    <td id="reportPoBox"></td>
                 </tr>
                 <tr>
                     <th>District</th>
-                    <td><input type="text" id="reportDistrict" class="form-control"></td>
+                    <td id="reportDistrict"></td>
                 </tr>
                 <tr>
                     <th>Sub-county</th>
-                    <td><input type="text" id="reportSubCounty" class="form-control"></td>
+                    <td id="reportSubCounty"></td>
                 </tr>
                 <tr>
                     <th>Parish</th>
-                    <td><input type="text" id="reportParish" class="form-control"></td>
+                    <td id="reportParish"></td>
                 </tr>
                 <tr>
                     <th>Village (LC1)</th>
-                    <td><input type="text" id="reportVillage" class="form-control"></td>
+                    <td id="reportVillage"></td>
                 </tr>
             </table>
         </div>
     </div>
 
-    <!-- Skills Training -->
+    <div class="card mb-4">
+        <div class="card-header">Enterprise Operations Details</div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Sector of Operation</th>
+                    <td id="reportSector"></td>
+                </tr>
+                <tr>
+                    <th>Products/Services Offered</th>
+                    <td id="reportProductsServices"></td>
+                </tr>
+                <tr>
+                    <th>Number of Employees</th>
+                    <td id="reportEmployees"></td>
+                </tr>
+                <tr>
+                    <th>Annual Revenue</th>
+                    <td id="reportAnnualRevenue"></td>
+                </tr>
+                <tr>
+                    <th>Years in Operation</th>
+                    <td id="reportYearsInOperation"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
     <div class="card mb-4">
         <div class="card-header">Skills Training</div>
         <div class="card-body">
             <table class="table table-striped">
                 <tr>
                     <th>Benefited from Skills Training Programme</th>
-                    <td>
-                        <select id="reportTraining" class="form-control">
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </td>
+                    <td id="reportTraining"></td>
                 </tr>
                 <tr id="reportSkillsTypeRow" style="display: none;">
                     <th>Type of Skills Undertaken</th>
-                    <td><input type="text" id="reportSkillsType" class="form-control"></td>
+                    <td id="reportSkillsType"></td>
                 </tr>
                 <tr id="reportTrainingDurationRow" style="display: none;">
                     <th>Duration</th>
-                    <td><input type="text" id="reportTrainingDuration" class="form-control"></td>
+                    <td id="reportTrainingDuration"></td>
                 </tr>
                 <tr>
                     <th>Desired Sector for Apprenticeship</th>
-                    <td><input type="text" id="reportDesiredSector" class="form-control"></td>
+                    <td id="reportDesiredSector"></td>
                 </tr>
             </table>
         </div>
     </div>
-
-    <!-- Save Button -->
-    <div class="text-right">
-        <button id="saveButton" class="btn btn-primary">Save Changes</button>
-    </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Mock data, replace with actual data
-        const data = {
-            surname: "Doe",
-            otherNames: "John",
-            email: "john.doe@example.com",
-            phoneNumber: "+123456789",
-            gender: "Male",
-            maritalStatus: "Single",
-            age: "30",
-            enterpriseName: "Doe Enterprises",
-            ownershipType: "Joint Ownership",
-            womenOwnership: "Yes",
-            establishmentYear: "2000-01-01",
-            contactNumber1: "+123456789",
-            contactNumber2: "+987654321",
-            businessEmail: "contact@doeenterprises.com",
-            poBox: "123",
-            district: "Kampala",
-            subCounty: "Central",
-            parish: "Parish A",
-            village: "Village B",
-            training: "Yes",
-            skillsType: "Carpentry",
-            trainingDuration: "6 months",
-            desiredSector: "Manufacturing"
-        };
+    document.addEventListener('DOMContentLoaded', function() {
+        // Populate report fields with user data from previous pages
+        document.getElementById('reportSurname').textContent = localStorage.getItem('surname') || '';
+        document.getElementById('reportOtherNames').textContent = localStorage.getItem('otherNames') || '';
+        document.getElementById('reportEmail').textContent = localStorage.getItem('email') || '';
+        document.getElementById('reportPhoneNumber').textContent = localStorage.getItem('phoneNumber') || '';
+        document.getElementById('reportGender').textContent = localStorage.getItem('gender') || '';
+        document.getElementById('reportMaritalStatus').textContent = localStorage.getItem('maritalStatus') || '';
+        document.getElementById('reportAge').textContent = localStorage.getItem('age') || '';
 
-        // Populate report fields
-        document.getElementById("reportSurname").value = data.surname;
-        document.getElementById("reportOtherNames").value = data.otherNames;
-        document.getElementById("reportEmail").value = data.email;
-        document.getElementById("reportPhoneNumber").value = data.phoneNumber;
-        document.getElementById("reportGender").value = data.gender;
-        document.getElementById("reportMaritalStatus").value = data.maritalStatus;
-        document.getElementById("reportAge").value = data.age;
-
-        document.getElementById("reportEnterpriseName").value = data.enterpriseName;
-        document.getElementById("reportOwnershipType").value = data.ownershipType;
-        document.getElementById("reportWomenOwnership").value = data.womenOwnership;
-        document.getElementById("reportEstablishmentYear").value = data.establishmentYear;
-        document.getElementById("reportContactNumber1").value = data.contactNumber1;
-        document.getElementById("reportContactNumber2").value = data.contactNumber2;
-        document.getElementById("reportBusinessEmail").value = data.businessEmail;
-        document.getElementById("reportPoBox").value = data.poBox;
-        document.getElementById("reportDistrict").value = data.district;
-        document.getElementById("reportSubCounty").value = data.subCounty;
-        document.getElementById("reportParish").value = data.parish;
-        document.getElementById("reportVillage").value = data.village;
-
-        document.getElementById("reportTraining").value = data.training;
-        if (data.training === "Yes") {
-            document.getElementById("reportSkillsTypeRow").style.display = "";
-            document.getElementById("reportSkillsType").value = data.skillsType;
-            document.getElementById("reportTrainingDurationRow").style.display = "";
-            document.getElementById("reportTrainingDuration").value = data.trainingDuration;
+        document.getElementById('reportCategory').textContent = localStorage.getItem('category') || '';
+        if (localStorage.getItem('categorySpecific')) {
+            document.getElementById('reportCategorySpecificRow').style.display = '';
+            document.getElementById('reportCategorySpecific').textContent = localStorage.getItem('categorySpecific') || '';
         }
-        document.getElementById("reportDesiredSector").value = data.desiredSector;
 
-        document.getElementById("reportTraining").addEventListener("change", function() {
-            if (this.value === "Yes") {
-                document.getElementById("reportSkillsTypeRow").style.display = "";
-                document.getElementById("reportTrainingDurationRow").style.display = "";
-            } else {
-                document.getElementById("reportSkillsTypeRow").style.display = "none";
-                document.getElementById("reportTrainingDurationRow").style.display = "none";
-            }
-        });
-
-        // Save button functionality
-        document.getElementById("saveButton").addEventListener("click", function() {
-            const updatedData = {
-                surname: document.getElementById("reportSurname").value,
-                otherNames: document.getElementById("reportOtherNames").value,
-                email: document.getElementById("reportEmail").value,
-                phoneNumber: document.getElementById("reportPhoneNumber").value,
-                gender: document.getElementById("reportGender").value,
-                maritalStatus: document.getElementById("reportMaritalStatus").value,
-                age: document.getElementById("reportAge").value,
-                enterpriseName: document.getElementById("reportEnterpriseName").value,
-                ownershipType: document.getElementById("reportOwnershipType").value,
-                womenOwnership: document.getElementById("reportWomenOwnership").value,
-                establishmentYear: document.getElementById("reportEstablishmentYear").value,
-                contactNumber1: document.getElementById("reportContactNumber1").value,
-                contactNumber2: document.getElementById("reportContactNumber2").value,
-                businessEmail: document.getElementById("reportBusinessEmail").value,
-                poBox: document.getElementById("reportPoBox").value,
-                district: document.getElementById("reportDistrict").value,
-                subCounty: document.getElementById("reportSubCounty").value,
-                parish: document.getElementById("reportParish").value,
-                village: document.getElementById("reportVillage").value,
-                training: document.getElementById("reportTraining").value,
-                skillsType: document.getElementById("reportSkillsType").value,
-                trainingDuration: document.getElementById("reportTrainingDuration").value,
-                desiredSector: document.getElementById("reportDesiredSector").value,
-            };
-
-            // Simulate a save operation (you should replace this with actual server request)
-            setTimeout(() => {
-                // Show success notification
-                showNotification("success");
-            }, 1000);
-        });
-
-        function showNotification(type) {
-            const successNotification = document.getElementById("successNotification");
-            const errorNotification = document.getElementById("errorNotification");
-            if (type === "success") {
-                successNotification.style.display = "block";
-                setTimeout(() => successNotification.style.display = "none", 3000);
-            } else {
-                errorNotification.style.display = "block";
-                setTimeout(() => errorNotification.style.display = "none", 3000);
-            }
+        document.getElementById('reportNationality').textContent = localStorage.getItem('nationality') || '';
+        document.getElementById('reportResidenceCountry').textContent = localStorage.getItem('residenceCountry') || '';
+        if (localStorage.getItem('nin')) {
+            document.getElementById('reportNINRow').style.display = '';
+            document.getElementById('reportNIN').textContent = localStorage.getItem('nin') || '';
         }
+        if (localStorage.getItem('passport')) {
+            document.getElementById('reportPassportRow').style.display = '';
+            document.getElementById('reportPassport').textContent = localStorage.getItem('passport') || '';
+        }
+
+        document.getElementById('reportEnterpriseName').textContent = localStorage.getItem('enterpriseName') || '';
+        document.getElementById('reportOwnershipType').textContent = localStorage.getItem('ownershipType') || '';
+        document.getElementById('reportWomenOwnership').textContent = localStorage.getItem('womenOwnership') || '';
+        document.getElementById('reportEstablishmentYear').textContent = localStorage.getItem('establishmentYear') || '';
+        document.getElementById('reportContactNumber1').textContent = localStorage.getItem('contactNumber1') || '';
+        document.getElementById('reportContactNumber2').textContent = localStorage.getItem('contactNumber2') || '';
+        document.getElementById('reportBusinessEmail').textContent = localStorage.getItem('businessEmail') || '';
+        document.getElementById('reportPoBox').textContent = localStorage.getItem('poBox') || '';
+        document.getElementById('reportDistrict').textContent = localStorage.getItem('district') || '';
+        document.getElementById('reportSubCounty').textContent = localStorage.getItem('subCounty') || '';
+        document.getElementById('reportParish').textContent = localStorage.getItem('parish') || '';
+        document.getElementById('reportVillage').textContent = localStorage.getItem('village') || '';
+
+        document.getElementById('reportSector').textContent = localStorage.getItem('sector') || '';
+        document.getElementById('reportProductsServices').textContent = localStorage.getItem('productsServices') || '';
+        document.getElementById('reportEmployees').textContent = localStorage.getItem('employees') || '';
+        document.getElementById('reportAnnualRevenue').textContent = localStorage.getItem('annualRevenue') || '';
+        document.getElementById('reportYearsInOperation').textContent = localStorage.getItem('yearsInOperation') || '';
+
+        var training = localStorage.getItem('training') || 'No';
+        document.getElementById('reportTraining').textContent = training;
+        if (training === 'Yes') {
+            document.getElementById('reportSkillsTypeRow').style.display = '';
+            document.getElementById('reportTrainingDurationRow').style.display = '';
+            document.getElementById('reportSkillsType').textContent = localStorage.getItem('skillsType') || '';
+            document.getElementById('reportTrainingDuration').textContent = localStorage.getItem('trainingDuration') || '';
+        }
+        document.getElementById('reportDesiredSector').textContent = localStorage.getItem('desiredSector') || '';
     });
 </script>
-</body>
-</html>

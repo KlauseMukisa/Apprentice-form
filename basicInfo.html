@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apprentice Application Form</title>
-    <!-- Bootstrap CSS -->
+    
+   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
      <!-- Intl-Tel-Input CSS -->
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="custom.css">
     <link rel="stylesheet" href="input.css">
     <link rel="stylesheet" href="page.css">
+   
 </head>
     
     <style>
@@ -597,24 +599,245 @@
 </div>
 
                 
-                
+<div id="page7" class="container mt-4 pages form-container">
+    <div class="card mb-4">
+        <div class="card-header">Basic Information <button class="btn btn-sm btn-outline-primary float-right" onclick="navigateToPage(0)">Edit</button></div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Surname</th>
+                    <td id="reportSurname"></td>
+                </tr>
+                <tr>
+                    <th>Other Names</th>
+                    <td id="reportOtherNames"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td id="reportEmail"></td>
+                </tr>
+                <tr>
+                    <th>Phone Number</th>
+                    <td id="reportPhoneNumber"></td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td id="reportGender"></td>
+                </tr>
+                <tr>
+                    <th>Marital Status</th>
+                    <td id="reportMaritalStatus"></td>
+                </tr>
+                <tr>
+                    <th>Age</th>
+                    <td id="reportAge"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
-                <div id="page7" class="container mt-4 pages form-container">
-                  
-                </div> 
+    <div class="card mb-4">
+        <div class="card-header">Category of Applicant <button class="btn btn-sm btn-outline-primary float-right" onclick="navigateToPage(1)">Edit</button></div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Category</th>
+                    <td id="reportCategory"></td>
+                </tr>
+                <tr id="reportCategorySpecificRow" style="display: none;">
+                    <th>Category Details</th>
+                    <td id="reportCategorySpecific"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
-                <div id="page8" class="container mt-4 pages form-container">
-                  
+    <div class="card mb-4">
+        <div class="card-header">Nationality and Residence <button class="btn btn-sm btn-outline-primary float-right" onclick="navigateToPage(2)">Edit</button></div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Nationality</th>
+                    <td id="reportNationality"></td>
+                </tr>
+                <tr>
+                    <th>Country of Residence</th>
+                    <td id="reportResidenceCountry"></td>
+                </tr>
+                <tr id="reportNINRow" style="display: none;">
+                    <th>National Identification Number (NIN)</th>
+                    <td id="reportNIN"></td>
+                </tr>
+                <tr id="reportPassportRow" style="display: none;">
+                    <th>Passport Number</th>
+                    <td id="reportPassport"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">Enterprise Basic Details <button class="btn btn-sm btn-outline-primary float-right" onclick="navigateToPage(3)">Edit</button></div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Enterprise Name</th>
+                    <td id="reportEnterpriseName"></td>
+                </tr>
+                <tr>
+                    <th>Type of Business Ownership</th>
+                    <td id="reportOwnershipType"></td>
+                </tr>
+                <tr>
+                    <th>Women Ownership</th>
+                    <td id="reportWomenOwnership"></td>
+                </tr>
+                <tr>
+                    <th>Year of Establishment</th>
+                    <td id="reportEstablishmentYear"></td>
+                </tr>
+                <tr>
+                    <th>Business Contact Number 1</th>
+                    <td id="reportContactNumber1"></td>
+                </tr>
+                <tr>
+                    <th>Business Contact Number 2</th>
+                    <td id="reportContactNumber2"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td id="reportBusinessEmail"></td>
+                </tr>
+                <tr>
+                    <th>P.O. Box Number</th>
+                    <td id="reportPoBox"></td>
+                </tr>
+                <tr>
+                    <th>District</th>
+                    <td id="reportDistrict"></td>
+                </tr>
+                <tr>
+                    <th>Sub-county</th>
+                    <td id="reportSubCounty"></td>
+                </tr>
+                <tr>
+                    <th>Parish</th>
+                    <td id="reportParish"></td>
+                </tr>
+                <tr>
+                    <th>Village (LC1)</th>
+                    <td id="reportVillage"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">Enterprise Operations Details <button class="btn btn-sm btn-outline-primary float-right" onclick="navigateToPage(4)">Edit</button></div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Sector of Operation</th>
+                    <td id="reportSector"></td>
+                </tr>
+                <tr>
+                    <th>Products/Services Offered</th>
+                    <td id="reportProductsServices"></td>
+                </tr>
+                <tr>
+                    <th>Number of Employees</th>
+                    <td id="reportEmployees"></td>
+                </tr>
+                <tr>
+                    <th>Annual Revenue</th>
+                    <td id="reportAnnualRevenue"></td>
+                </tr>
+                <tr>
+                    <th>Years in Operation</th>
+                    <td id="reportYearsInOperation"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">Skills Training <button class="btn btn-sm btn-outline-primary float-right" onclick="navigateToPage(5)">Edit</button></div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Benefited from Skills Training Programme</th>
+                    <td id="reportTraining"></td>
+                </tr>
+                <tr id="reportSkillsTypeRow" style="display: none;">
+                    <th>Type of Skills Undertaken</th>
+                    <td id="reportSkillsType"></td>
+                </tr>
+                <tr id="reportTrainingDurationRow" style="display: none;">
+                    <th>Duration</th>
+                    <td id="reportTrainingDuration"></td>
+                </tr>
+                <tr>
+                    <th>Desired Sector for Apprenticeship</th>
+                    <td id="reportDesiredSector"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="page8" class="container mt-4 pages form-container" style="display: none;">
+    <div class="card mb-4">
+        <div class="card-header">Declaration</div>
+        <div class="card-body">
+            <form id="declarationForm">
+                <div class="form-group">
+                    <label for="declarationCheckbox">
+                        <input type="checkbox" id="declarationCheckbox" required> I hereby declare that the information provided is true and correct to the best of my knowledge.
+                    </label>
                 </div>
+                <button type="button" class="btn btn-primary" onclick="submitForm()">Submit Application</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-                <div id="page9" class="container mt-4 pages form-container">
-                  
+<div id="page9" class="container mt-4 pages form-container" style="display: none;">
+    <div class="card mb-4">
+        <div class="card-header">Your Profile Information</div>
+        <div class="card-body">
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
                 </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="updateProfile()">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</div>
+               
+             
             </main>
         </div>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!--profile-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -642,6 +865,12 @@
     <script src="skills2.js"></script>
     <script src="submit.js"></script>
     <script src="logout.js"></script>
+    <script src="report.js"></script>
+    <script src="profile.js"></script>
+ 
+ 
+
+
 
    </body>
 </html>
