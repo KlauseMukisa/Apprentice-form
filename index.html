@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
-</head>
 <body>
     <header>
         <div class="container">
@@ -54,7 +53,7 @@
             <div class="modal hidden" id="registerModal">
                 <h2>Welcome to the GROW Project</h2>
                 <p>Please register with us</p>
-                <form>
+                <form action="register.php" method="POST">
                     <label for="firstName">First Name:</label>
                     <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
                     
@@ -91,7 +90,7 @@
         </div>
     </footer>
 
- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script src="index.js"></script>
 </body>
